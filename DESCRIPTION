@@ -19,9 +19,7 @@ LinkingTo:
 Imports: 
     Rcpp,
     sf,
-    raster,
     dplyr,
     glue,
-    sp,
     magrittr,
     rlang
