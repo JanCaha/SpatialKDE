@@ -38,6 +38,11 @@ jobs:
       - name: Install package
         run: R CMD INSTALL .
         
+      - name: Set GIT
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "Github Action"
+        
       - name: Deploy package
         run: |
           Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace'))"
