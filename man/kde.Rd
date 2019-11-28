@@ -19,11 +19,10 @@ higher than 0. Can be left out if \code{grid} is provided.}
 uknown kernel name is used it falls back to the default value.}
 
 \item{scaled}{\code{logical} specifing if the output values should be scaled. Default value is
-\code{FALSE}.
-Default value is \code{"raster"}.}
+\code{FALSE}.}
 
 \item{grid}{\code{\link[sf]{sf}} \code{data.frame} outcome of function
-\code{\link{create_points_grid}}.}
+\code{\link{create_raster_rectangular}} or \code{\link{create_raster_hexagonal}}.}
 }
 \value{
 \code{\link[sf]{sf}} \code{data.frame}.

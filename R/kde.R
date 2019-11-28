@@ -13,9 +13,8 @@
 #' uknown kernel name is used it falls back to the default value.
 #' @param scaled \code{logical} specifing if the output values should be scaled. Default value is
 #' \code{FALSE}.
-#' Default value is \code{"raster"}.
 #' @param grid \code{\link[sf]{sf}} \code{data.frame} outcome of function
-#' \code{\link{create_points_grid}}.
+#' \code{\link{create_raster_rectangular}} or \code{\link{create_raster_hexagonal}}.
 #'
 #' @return  \code{\link[sf]{sf}} \code{data.frame}.
 #' @export
