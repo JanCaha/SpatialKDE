@@ -20,8 +20,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev 
 
-      - name: Install dependencies
-        run: Rscript -e "install.packages(c('remotes', 'rcmdcheck'))" -e "remotes::install_deps(dependencies = TRUE)"
+      - name: R dependencies
+        run: |
+          Rscript -e "install.packages(c('remotes', 'rcmdcheck'))" 
+          Rscript -e "remotes::install_deps(dependencies = TRUE)"
         
       - name: Check Package
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"
