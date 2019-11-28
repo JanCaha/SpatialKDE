@@ -1,0 +1,21 @@
+name: R-CMD-check
+
+on:
+  push:
+    paths: 
+      - R/**
+      - src/**
+      - DESCRIPTION
+
+jobs:
+  R-CMD-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: r-lib/actions/setup-r@master
+      
+      - name: Install dependencies
+        run: Rscript -e "install.packages(c('remotes', 'rcmdcheck'))" -e "remotes::install_deps(dependencies = TRUE)"
+        
+      - name: Check Package
+        run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"

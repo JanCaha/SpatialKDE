@@ -1,0 +1,29 @@
+name: Pkgdown - build and deploy website
+
+on:
+  push:
+    paths: 
+      - R/**
+      - DESCRIPTION
+
+jobs:
+  pkgdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-pandoc@master
+      
+      - name: Install R package dependencies
+        run: |
+          Rscript -e 'install.packages(c("remotes", "devtools"))'
+          Rscript -e 'remotes::install_github("jimhester/pkgdown@github-actions-deploy")'
+          Rscript -e 'remotes::install_deps(dependencies = TRUE)'
+          
+      - name: Install package
+        run: R CMD INSTALL .
+        
+      - name: Deploy package
+        run: |
+          Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace'))"
+          Rscript -e "pkgdown:::deploy_local(new_process = FALSE, remote_url = 'https://x-access-token:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git')"
