@@ -1,7 +1,7 @@
 Package: SpatialKDE
 Type: Package
 Title: Calculate Kernel Density Estimation for spatial data
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: 
     person(given = "Jan",
            family = "Caha",
