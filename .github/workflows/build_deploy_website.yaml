@@ -22,6 +22,13 @@ jobs:
           sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
           sudo apt-get install libcurl4-openssl-dev
       
+      - name: Cache R packages
+        uses: actions/cache@v1
+        if: runner.os != 'Windows'
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('**/DESCRIPTION') }}
+      
       - name: Install R package dependencies
         run: |
           Rscript -e 'install.packages(c("remotes", "devtools"))'
