@@ -6,6 +6,7 @@ on:
       - R/**
       - src/**
       - DESCRIPTION
+      - .github/workflows/R-CMD-check.yaml
 
 jobs:
   R-CMD-check:
@@ -13,6 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@master
+      
+      - name: Cache R packages
+        uses: actions/cache@v1
+        if: runner.os != 'Windows'
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('NAMESPACE') }}
       
       - name: Install Linux libraries
         run: |
