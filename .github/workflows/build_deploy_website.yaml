@@ -5,6 +5,7 @@ on:
     paths: 
       - R/**
       - DESCRIPTION
+      - .github/workflows/build_deploy_website.yaml
 
 jobs:
   pkgdown:
