@@ -75,7 +75,7 @@ kde <- function(points,
   if (all(unique(st_geometry_type(grid)) == "POINT")) {
     grid_points <- grid
   } else {
-    message("Using centroids instead of provided geometry to calculate KDE.")
+    message("Using centroids instead of provided `grid` geometries to calculate KDE estimates.")
     suppressWarnings(
       grid_points <- grid %>%
         st_centroid(of_largest_polygon = TRUE)
