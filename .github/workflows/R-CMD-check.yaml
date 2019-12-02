@@ -35,3 +35,10 @@ jobs:
         
       - name: Check Package
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"
+        
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@master
+        with:
+          name: R-CMD-check-results
+          path: check
