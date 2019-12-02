@@ -8,6 +8,10 @@
 # SpatialKDE
 R package to calculate spatial KDE. Inspired by the tool Heatmap tool from QGIS. Help for Heatmap tool can be found [here](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/plugins_heatmap.html), the help is for older version of the tool, but the window of the tool looks relatively the same. 
 
+## Documentation
+
+[Available here.](https://jancaha.github.io/SpatialKDE/)
+
 ## Instalation 
 
 If you have RTools (Windows), or any C++ compiler (Linux, macOS) installed then you can use:
