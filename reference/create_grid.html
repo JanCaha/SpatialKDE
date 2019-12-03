@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>License • SpatialKDE</title>
+<title>Create grid — create_grid_rectangular • SpatialKDE</title>
 
 
 <!-- jquery -->
@@ -29,13 +29,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="License" />
+<meta property="og:title" content="Create grid — create_grid_rectangular" />
+<meta property="og:description" content="Create grid of equaly spaced rectangles or hexagons. The distance between centre points
+in both x and y dimension is equal to cell_size. The function is effectively a wrapper around
+st_make_grid with a little bit of preprocessing including generation of grid only inside
+st_convex_hull." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +59,7 @@
   </head>
 
   <body>
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -66,7 +71,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">SpatialKDE</a>
+        <a class="navbar-link" href="../index.html">SpatialKDE</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
@@ -74,13 +79,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -101,19 +106,80 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>License</h1>
+    <h1>Create grid</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JanCaha/SpatialKDE/blob/master/R/create_grid.R'><code>R/create_grid.R</code></a></small>
+    <div class="hidden name"><code>create_grid.Rd</code></div>
     </div>
 
-<pre>YEAR: 2019
-COPYRIGHT HOLDER: Jan Caha
-</pre>
+    <div class="ref-description">
+    <p>Create grid of equaly spaced rectangles or hexagons. The distance between centre points
+in both x and y dimension is equal to <code>cell_size</code>. The function is effectively a wrapper around
+<code><a href='https://rdrr.io/pkg/sf/man/st_make_grid.html'>st_make_grid</a></code> with a little bit of preprocessing including generation of grid only inside
+<code><a href='https://rdrr.io/pkg/sf/man/geos_unary.html'>st_convex_hull</a></code>.</p>
+    </div>
+
+    <pre class="usage"><span class='fu'>create_grid_rectangular</span>(
+  <span class='no'>geometry</span>,
+  <span class='no'>cell_size</span>,
+  <span class='kw'>side_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>only_inside</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+
+<span class='fu'>create_grid_hexagonal</span>(
+  <span class='no'>geometry</span>,
+  <span class='no'>cell_size</span>,
+  <span class='kw'>side_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>only_inside</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>geometry</th>
+      <td><p><code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> containing geometry which should be cover by
+the grid.</p></td>
+    </tr>
+    <tr>
+      <th>cell_size</th>
+      <td><p><code>numeric</code> specifing the distance for equal spaced points or cells.</p></td>
+    </tr>
+    <tr>
+      <th>side_offset</th>
+      <td><p><code>numeric</code> specifing the side offset, distance added to the convex hull
+to generate grid for KDE. Good estimate is usually the same value as band width of KDE.</p></td>
+    </tr>
+    <tr>
+      <th>only_inside</th>
+      <td><p><code>logical</code> specifing if the grid cells should be generated only inside of the
+geometry. Default value is <code>FALSE</code>.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code>.</p>
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>create_grid_rectangular</code>: Create rectangular grid</p></li>
+<li><p><code>create_grid_hexagonal</code>: Create hexagonal grid</p></li>
+</ul>
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#functions">Functions</a></li>
+    </ul>
 
+  </div>
 </div>
-
 
 
       <footer>
