@@ -14,7 +14,7 @@
 #' @param scaled \code{logical} specifing if the output values should be scaled. Default value is
 #' \code{FALSE}.
 #' @param grid \code{\link[sf]{sf}} \code{data.frame} outcome of function
-#' \code{\link{create_raster_rectangular}} or \code{\link{create_raster_hexagonal}}.
+#' \code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}.
 #'
 #' @return  \code{\link[sf]{sf}} \code{data.frame}.
 #' @export
@@ -61,7 +61,7 @@ kde <- function(points,
   }
 
   if (missing(grid)) {
-    grid <- create_raster_rectangular(points, cell_size, band_width)
+    grid <- create_grid_rectangular(points, cell_size, band_width)
   }
 
   cells_number <- nrow(grid)

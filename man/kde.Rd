@@ -22,7 +22,7 @@ uknown kernel name is used it falls back to the default value.}
 \code{FALSE}.}
 
 \item{grid}{\code{\link[sf]{sf}} \code{data.frame} outcome of function
-\code{\link{create_raster_rectangular}} or \code{\link{create_raster_hexagonal}}.}
+\code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}.}
 }
 \value{
 \code{\link[sf]{sf}} \code{data.frame}.
