@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^\.github*
 LICENSE.md
+^\release*
+^pkgdown*
