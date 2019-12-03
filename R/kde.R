@@ -53,11 +53,10 @@ kde <- function(points,
     .validate_cellsize(cell_size)
   }
 
-  if (!(kernel %in% available_kernels)){
+  if (!(kernel %in% available_kernels)) {
     warning(glue::glue("Unknown `kernel` used. The implemented kernels are: ",
                        glue::glue_collapse(available_kernels, sep = ", "), ". ",
                        "Using `quartic` kernel as default."))
-  } else {
     kernel = available_kernels[2]
   }
 
@@ -78,7 +77,7 @@ kde <- function(points,
     message("Using centroids instead of provided `grid` geometries to calculate KDE estimates.")
     suppressWarnings(
       grid_points <- grid %>%
-        st_centroid(of_largest_polygon = TRUE)
+        sf::st_centroid(of_largest_polygon = TRUE)
     )
   }
 
