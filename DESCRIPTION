@@ -1,7 +1,7 @@
 Package: SpatialKDE
 Type: Package
 Title: Calculate Kernel Density Estimation for spatial data
-Version: 0.3.2
+Version: 0.4.0
 URL: https://jancaha.github.io/SpatialKDE/index.html, https://github.com/JanCaha/SpatialKDE
 Authors@R: 
     person(given = "Jan",
