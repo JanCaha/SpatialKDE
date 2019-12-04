@@ -47,7 +47,7 @@ jobs:
       - name: Document Package
         run: |
           Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace'))"
-          git commit -m "update docs" -a
+          git commit --allow-empty -m "update docs" -a
 
       - name: Push documentation
         uses: ad-m/github-push-action@master
