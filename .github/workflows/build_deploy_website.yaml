@@ -6,6 +6,7 @@ on:
       - R/**
       - DESCRIPTION
       - .github/workflows/build_deploy_website.yaml
+      - NEWS.md
 
 jobs:
   pkgdown:
