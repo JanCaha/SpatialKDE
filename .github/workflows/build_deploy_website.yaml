@@ -54,6 +54,14 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy package
+      - name: Build package website
         run: |
-          Rscript -e "pkgdown:::deploy_local(new_process = FALSE, remote_url = 'https://x-access-token:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git')"
+          Rscript -e "pkgdown::build_site()"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2.5.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./docs
+
