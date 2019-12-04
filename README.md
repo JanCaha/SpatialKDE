@@ -1,3 +1,5 @@
+# SpatialKDE
+
 <!-- badges: start -->
 ![R-CMD-check](https://github.com/JanCaha/SpatialKDE/workflows/R-CMD-check/badge.svg)
 ![Windows Release](https://github.com/JanCaha/SpatialKDE/workflows/Build%20Windows%20Binaries%20and%20Create%20Release/badge.svg)
@@ -5,7 +7,6 @@
 ![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 <!-- badges: end -->
 
-# SpatialKDE
 R package to calculate spatial KDE. Inspired by the tool Heatmap tool from QGIS. Help for Heatmap tool can be found [here](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/plugins_heatmap.html), the help is for older version of the tool, but the window of the tool looks relatively the same. 
 
 ## Documentation
