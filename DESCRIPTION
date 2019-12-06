@@ -7,9 +7,10 @@ Authors@R:
     person(given = "Jan",
            family = "Caha",
            role = c("aut", "cre"),
-           email = "jan.caha@outlook.com")
-Description: Calculate Kernel Density Estimation for spatial data. The algorithm is inspired by
-  the tool Heatmap from QGIS.
+           email = "jan.caha@outlook.com",
+           comment = c(ORCID = "0000-0003-0165-0606"))
+Description: Calculate Kernel Density Estimation for spatial data. 
+  The algorithm is inspired by the tool Heatmap from QGIS.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
