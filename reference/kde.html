@@ -38,7 +38,8 @@
 <meta property="og:title" content="Kernel Density Estimation — kde" />
 <meta property="og:description" content="KDE for spatial data. The algorithm is heavily inspired by
 Heatmap tool
-in QGIS. The tutorial is provided here." />
+in QGIS. The help for QGIS tools is provided at the QGIS website.
+The a tutorial is provided here." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,10 +119,19 @@ in QGIS. The tutorial is provided here." />
     <div class="ref-description">
     <p>KDE for spatial data. The algorithm is heavily inspired by
 <a href='https://github.com/qgis/QGIS/blob/b3d2619976a69d7fb67b884492da491dfaba287c/src/analysis/raster/qgskde.cpp'>Heatmap tool</a>
-in QGIS. The tutorial is provided <a href='https://grindgis.com/software/heat-map-using-qgis'>here</a>.</p>
+in QGIS. The help for QGIS tools is provided <a href='https://docs.qgis.org/testing/en/docs/user_manual/processing_algs/qgis/interpolation.html#heatmap-kernel-density-estimation'>at the QGIS website</a>.
+The a tutorial is provided <a href='https://grindgis.com/software/heat-map-using-qgis'>here</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kde</span>(<span class='no'>points</span>, <span class='no'>band_width</span>, <span class='no'>cell_size</span>, <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"quartic"</span>, <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>grid</span>)</pre>
+    <pre class="usage"><span class='fu'>kde</span>(
+  <span class='no'>points</span>,
+  <span class='no'>band_width</span>,
+  <span class='no'>cell_size</span>,
+  <span class='kw'>decay</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"quartic"</span>,
+  <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>grid</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,9 +150,14 @@ in QGIS. The tutorial is provided <a href='https://grindgis.com/software/heat-ma
 higher than 0. Can be left out if <code>grid</code> is provided.</p></td>
     </tr>
     <tr>
+      <th>decay</th>
+      <td><p><code>numeric</code> specifing the decay parameter for <code>"triangular"</code> kernel. For
+other kernels besides <code>"triangular"</code> the parameter is not used.</p></td>
+    </tr>
+    <tr>
       <th>kernel</th>
       <td><p><code>character</code> specifing type of kernel to use. Available implemented kernels are
-<code>"uniform", "quartic", "triweight", "epanechnikov"</code>. Default is <code>"quartic"</code> and if
+<code>"uniform", "quartic", "triweight", "epanechnikov", "triangular"</code>. Default is <code>"quartic"</code> and if
 uknown kernel name is used it falls back to the default value.</p></td>
     </tr>
     <tr>
@@ -179,7 +194,7 @@ uknown kernel name is used it falls back to the default value.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
