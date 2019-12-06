@@ -2,14 +2,17 @@
 #'
 #' KDE for spatial data. The algorithm is heavily inspired by
 #' \href{https://github.com/qgis/QGIS/blob/b3d2619976a69d7fb67b884492da491dfaba287c/src/analysis/raster/qgskde.cpp}{Heatmap tool}
-#' in QGIS. The tutorial is provided \href{https://grindgis.com/software/heat-map-using-qgis}{here}.
+#' in QGIS. The help for QGIS tools is provided \href{https://docs.qgis.org/testing/en/docs/user_manual/processing_algs/qgis/interpolation.html#heatmap-kernel-density-estimation}{at the QGIS website}.
+#' The a tutorial is provided \href{https://grindgis.com/software/heat-map-using-qgis}{here}.
 #'
 #' @param points \code{\link[sf]{sf}} \code{data.frame} containing only POINTS.
 #' @param band_width \code{numeric} specifing the band width for KDE.
 #' @param cell_size \code{numeric} specifing the distance for equal spaced points or cells. Must be
 #' higher than 0. Can be left out if \code{grid} is provided.
+#' @param decay \code{numeric} specifing the decay parameter for \code{"triangular"} kernel. For
+#' other kernels besides \code{"triangular"} the parameter is not used.
 #' @param kernel \code{character} specifing type of kernel to use. Available implemented kernels are
-#' \code{"uniform", "quartic", "triweight", "epanechnikov"}. Default is \code{"quartic"} and if
+#' \code{"uniform", "quartic", "triweight", "epanechnikov", "triangular"}. Default is \code{"quartic"} and if
 #' uknown kernel name is used it falls back to the default value.
 #' @param scaled \code{logical} specifing if the output values should be scaled. Default value is
 #' \code{FALSE}.
@@ -31,11 +34,12 @@
 kde <- function(points,
                 band_width,
                 cell_size,
+                decay = 1,
                 kernel = "quartic",
                 scaled = FALSE,
                 grid){
 
-  available_kernels = c("uniform", "quartic", "triweight", "epanechnikov")
+  available_kernels = c("uniform", "quartic", "triweight", "epanechnikov", "triangular")
 
   .validate_sf(points)
 
@@ -85,7 +89,8 @@ kde <- function(points,
                              sf::st_coordinates(points),
                              bw = band_width,
                              kernel = kernel,
-                             scaled = scaled)
+                             scaled = scaled,
+                             decay = decay)
 
   grid <- grid %>%
     dplyr::mutate(kde_value = kde_values)

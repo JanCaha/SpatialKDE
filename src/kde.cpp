@@ -53,9 +53,25 @@ double epanechnikovKernel(double d, double bw, bool scaled){
   }
 }
 
-// TODO include the triangularKernel
+double triangularKernel(double d, double bw, bool scaled, double decay){
 
-double kde_element(double d, double bw, String kernel, bool scaled){
+  if (scaled) {
+    if (decay  >= 0){
+      double k = 3./((1.+2.*decay)*M_PI*pow(bw,2));
+      // Derived from Wand and Jones (1995), p. 175 (with addition of decay parameter)
+      return k*(1.-(1.-decay)*(d/bw));
+    }
+    else {
+      // Non-standard or mathematically valid negative decay ("coolmap")
+      return (1.-(1.-decay)*(d/bw));
+    }
+  }
+  else {
+    return(1.-(1.-decay)*(d/bw));
+  }
+}
+
+double kde_element(double d, double bw, String kernel, bool scaled, double decay){
   if (d <= bw) {
     if (kernel == "uniform") {
       return uniformKernel(d, bw, scaled);
@@ -68,6 +84,9 @@ double kde_element(double d, double bw, String kernel, bool scaled){
     }
     else if(kernel == "epanechnikov") {
       return epanechnikovKernel(d, bw, scaled);
+    }
+    else if(kernel == "triangular") {
+      return triangularKernel(d, bw, scaled, decay);
     }
     // default is uniform kernel
     else{
@@ -83,7 +102,8 @@ NumericVector kde_estimate(NumericMatrix fishnet,
                            NumericMatrix points,
                            double bw,
                            String kernel,
-                           bool scaled = false) {
+                           bool scaled = false,
+                           double decay = 1) {
 
   int nrow = fishnet.nrow();
 
@@ -103,7 +123,8 @@ NumericVector kde_estimate(NumericMatrix fishnet,
       d += kde_element(sqrt(sum(pow(v3, 2.0))),
                        bw,
                        kernel,
-                       scaled);
+                       scaled,
+                       decay);
 
     }
 

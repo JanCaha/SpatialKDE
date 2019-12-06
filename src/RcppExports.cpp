@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // kde_estimate
-NumericVector kde_estimate(NumericMatrix fishnet, NumericMatrix points, double bw, String kernel, bool scaled);
-RcppExport SEXP _SpatialKDE_kde_estimate(SEXP fishnetSEXP, SEXP pointsSEXP, SEXP bwSEXP, SEXP kernelSEXP, SEXP scaledSEXP) {
+NumericVector kde_estimate(NumericMatrix fishnet, NumericMatrix points, double bw, String kernel, bool scaled, double decay);
+RcppExport SEXP _SpatialKDE_kde_estimate(SEXP fishnetSEXP, SEXP pointsSEXP, SEXP bwSEXP, SEXP kernelSEXP, SEXP scaledSEXP, SEXP decaySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -16,13 +16,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type bw(bwSEXP);
     Rcpp::traits::input_parameter< String >::type kernel(kernelSEXP);
     Rcpp::traits::input_parameter< bool >::type scaled(scaledSEXP);
-    rcpp_result_gen = Rcpp::wrap(kde_estimate(fishnet, points, bw, kernel, scaled));
+    Rcpp::traits::input_parameter< double >::type decay(decaySEXP);
+    rcpp_result_gen = Rcpp::wrap(kde_estimate(fishnet, points, bw, kernel, scaled, decay));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_SpatialKDE_kde_estimate", (DL_FUNC) &_SpatialKDE_kde_estimate, 5},
+    {"_SpatialKDE_kde_estimate", (DL_FUNC) &_SpatialKDE_kde_estimate, 6},
     {NULL, NULL, 0}
 };
 
