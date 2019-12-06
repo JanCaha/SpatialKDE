@@ -47,9 +47,17 @@ kde <- function(points,
 
   .validate_points(points)
 
-  .validate_sf(grid)
+  if (missing(grid)) {
 
-  .validate_projected(grid)
+    grid <- create_grid_rectangular(points, cell_size, band_width)
+
+  } else {
+
+    .validate_sf(grid)
+
+    .validate_projected(grid)
+  }
+
 
   .validate_bandwidth(band_width)
 
@@ -64,9 +72,6 @@ kde <- function(points,
     kernel = available_kernels[2]
   }
 
-  if (missing(grid)) {
-    grid <- create_grid_rectangular(points, cell_size, band_width)
-  }
 
   cells_number <- nrow(grid)
 
