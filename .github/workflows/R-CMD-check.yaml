@@ -2,11 +2,13 @@ name: R-CMD-check
 
 on:
   push:
-    paths: 
+    paths:
       - R/**
       - src/**
       - DESCRIPTION
       - .github/workflows/R-CMD-check.yaml
+    tags-ignore:
+      - v**
 
 jobs:
   R-CMD-check:
@@ -14,28 +16,28 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@master
-      
+
       - name: Cache R packages
         uses: actions/cache@v1
         if: runner.os != 'Windows'
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-r-${{ hashFiles('NAMESPACE') }}
-      
+
       - name: Install Linux libraries
         run: |
           sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt-get update
-          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev 
+          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
       - name: R dependencies
         run: |
-          Rscript -e "install.packages(c('remotes', 'rcmdcheck'))" 
+          Rscript -e "install.packages(c('remotes', 'rcmdcheck'))"
           Rscript -e "remotes::install_deps(dependencies = TRUE)"
-        
+
       - name: Check Package
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"
-        
+
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@master
