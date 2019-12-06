@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kernel Density Estimation — kde • SpatialKDE</title>
+<title>Articles • SpatialKDE</title>
 
 
 <!-- jquery -->
@@ -35,12 +35,7 @@
 
 
 
-<meta property="og:title" content="Kernel Density Estimation — kde" />
-<meta property="og:description" content="KDE for spatial data. The algorithm is heavily inspired by
-Heatmap tool
-in QGIS. The help for QGIS tools is provided at the QGIS website.
-The a tutorial is provided here." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Articles" />
 
 
 
@@ -59,7 +54,7 @@ The a tutorial is provided here." />
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-article-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -114,79 +109,17 @@ The a tutorial is provided here." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Kernel Density Estimation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JanCaha/SpatialKDE/blob/master/R/kde.R'><code>R/kde.R</code></a></small>
-    <div class="hidden name"><code>kde.Rd</code></div>
+      <h1>Articles</h1>
     </div>
 
-    <div class="ref-description">
-    <p>KDE for spatial data. The algorithm is heavily inspired by
-<a href='https://github.com/qgis/QGIS/blob/b3d2619976a69d7fb67b884492da491dfaba287c/src/analysis/raster/qgskde.cpp'>Heatmap tool</a>
-in QGIS. The help for QGIS tools is provided <a href='https://docs.qgis.org/testing/en/docs/user_manual/processing_algs/qgis/interpolation.html#heatmap-kernel-density-estimation'>at the QGIS website</a>.
-The a tutorial is provided <a href='https://grindgis.com/software/heat-map-using-qgis'>here</a>.</p>
+    <div class="section ">
+      <h3>All vignettes</h3>
+      <p class="section-desc"></p>
+
+      <ul>
+        <li><a href="SpatialKDE.html">SpatialKDE quickstart</a></li>
+      </ul>
     </div>
-
-    <pre class="usage"><span class='fu'>kde</span>(
-  <span class='no'>points</span>,
-  <span class='no'>band_width</span>,
-  <span class='no'>cell_size</span>,
-  <span class='kw'>decay</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"quartic"</span>,
-  <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>grid</span>
-)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>points</th>
-      <td><p><code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> containing only POINTS.</p></td>
-    </tr>
-    <tr>
-      <th>band_width</th>
-      <td><p><code>numeric</code> specifing the band width for KDE.</p></td>
-    </tr>
-    <tr>
-      <th>cell_size</th>
-      <td><p><code>numeric</code> specifing the distance for equal spaced points or cells. Must be
-higher than 0. Can be left out if <code>grid</code> is provided.</p></td>
-    </tr>
-    <tr>
-      <th>decay</th>
-      <td><p><code>numeric</code> specifing the decay parameter for <code>"triangular"</code> kernel. For
-other kernels besides <code>"triangular"</code> the parameter is not used.</p></td>
-    </tr>
-    <tr>
-      <th>kernel</th>
-      <td><p><code>character</code> specifing type of kernel to use. Available implemented kernels are
-<code>"uniform", "quartic", "triweight", "epanechnikov", "triangular"</code>. Default is <code>"quartic"</code> and if
-uknown kernel name is used it falls back to the default value.</p></td>
-    </tr>
-    <tr>
-      <th>scaled</th>
-      <td><p><code>logical</code> specifing if the output values should be scaled. Default value is
-<code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>grid</th>
-      <td><p><code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> outcome of function
-<code><a href='create_grid.html'>create_grid_rectangular</a></code> or <code><a href='create_grid.html'>create_grid_hexagonal</a></code>.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code>.</p>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-    </ul>
-
   </div>
 </div>
 
