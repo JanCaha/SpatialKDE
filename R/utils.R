@@ -1,3 +1,11 @@
+#' @importFrom glue glue
+.warn_long_calculation <- function(cells_number){
+  if (cells_number > 50000) {
+    message(glue::glue("The number of cells (points) in the outcomes is large (`{cells_number}`). ",
+                       "The calculation may take a while. To speed it up you can use larger `cell_size`."))
+  }
+}
+
 #' @importFrom rlang quo_text enquo
 #' @importFrom glue glue
 .validate_sf <- function(x){
@@ -19,12 +27,25 @@
   }
 }
 
+#' @importFrom glue glue
+#' @importFrom rlang quo_text enquo
 #' @importFrom sf st_is_longlat
 .validate_projected <- function(x){
   var_name <- rlang::quo_text(rlang::enquo(x))
 
   if (sf::st_is_longlat(x)) {
     stop(glue::glue("Variable `{var_name}` layer must be projected. Cannot calculate KDE on geographical coordinates."))
+  }
+}
+
+#' @importFrom glue glue
+#' #' @importFrom rlang quo_text enquo
+#' @importFrom raster isLonLat crs
+.validate_raster_projected <- function(x){
+  var_name <- rlang::quo_text(rlang::enquo(x))
+
+  if (raster::isLonLat(raster::crs(x))) {
+    stop(glue::glue("Raster layer `{var_name}` must be projected. Cannot calculate KDE on geographical coordinates."))
   }
 }
 
