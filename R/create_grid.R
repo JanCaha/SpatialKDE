@@ -7,9 +7,10 @@
 #'
 #' @param geometry \code{\link[sf]{sf}} \code{data.frame} containing geometry which should be cover by
 #' the grid.
-#' @param cell_size \code{numeric} specifing the distance for equal spaced points or cells.
+#' @param cell_size \code{numeric} specifing the distance for equally spaced centers of polygons
+#' (rectangular or hexagonal).
 #' @param side_offset \code{numeric} specifing the side offset, distance added to the convex hull
-#' to generate grid for KDE. Good estimate is usually the same value as band width of KDE.
+#' of input geometry to generate grid for KDE. Good estimate is usually the same value as band width of KDE.
 #' @param only_inside \code{logical} specifing if the grid cells should be generated only inside of the
 #' geometry. Default value is \code{FALSE}.
 #'
@@ -48,7 +49,7 @@ create_grid_hexagonal <- function(geometry, cell_size, side_offset = 0, only_ins
 
   if (!(typeof(only_inside) == "logical")) {
     stop(glue::glue(
-      "Parameter `only_inside` must be \"logical\". Currently it is of type: {typeof(only_inside)}."
+      "Parameter `only_inside` must be \"logical\". Currently it is of type: `{typeof(only_inside)}`."
     ))
   }
 
