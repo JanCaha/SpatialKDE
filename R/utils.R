@@ -20,9 +20,11 @@
 }
 
 #' @importFrom sf st_is_longlat
-.validate_projected <- function(points){
-  if (sf::st_is_longlat(points)) {
-    stop("Point layer must be projected. Cannot calculate KDE on geographical coordinates.")
+.validate_projected <- function(x){
+  var_name <- rlang::quo_text(rlang::enquo(x))
+
+  if (sf::st_is_longlat(x)) {
+    stop(glue::glue("Variable `{var_name}` layer must be projected. Cannot calculate KDE on geographical coordinates."))
   }
 }
 
@@ -40,11 +42,9 @@
 #' @importFrom glue glue
 .validate_cellsize <- function(cell_size){
 
-  if (!is.numeric(cell_size)) {
-    if (cell_size <= 0) {
-      stop(glue::glue("Cell_size parameter must be numerical and higher than zero. ",
-                      "Currently it is `{class(cell_size)}` with value `{cell_size}`."))
-    }
+  if (!is.numeric(cell_size) | cell_size <= 0) {
+    stop(glue::glue("Cell_size parameter must be numerical and higher than zero. ",
+                    "Currently it is `{class(cell_size)}` with value `{cell_size}`."))
   }
 }
 
@@ -57,10 +57,8 @@
 #' @importFrom glue glue
 .validate_sideoffset <- function(side_offset){
 
-  if (!is.numeric(side_offset)){
-    if (side_offset < 0){
-      stop(glue::glue("Side_offset parameter must be numerical and higher than zero. ",
-                      "Currently it is `{class(side_offset)}` with value `{side_offset}`."))
-    }
+  if (!is.numeric(side_offset) | side_offset < 0) {
+    stop(glue::glue("Side_offset parameter must be numerical and higher than zero. ",
+                    "Currently it is `{class(side_offset)}` with value `{side_offset}`."))
   }
 }
