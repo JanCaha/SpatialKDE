@@ -39,7 +39,7 @@
 }
 
 #' @importFrom glue glue
-#' #' @importFrom rlang quo_text enquo
+#' @importFrom rlang quo_text enquo
 #' @importFrom raster isLonLat crs
 .validate_raster_projected <- function(x){
   var_name <- rlang::quo_text(rlang::enquo(x))
