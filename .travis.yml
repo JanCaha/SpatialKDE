@@ -1,0 +1,17 @@
+language: R
+cache: packages
+
+r: devel
+
+r_packages:
+  - devtools
+  - remotes
+  - rmarkdown
+
+before_script:
+  - Rscript -e 'devtools::install_deps(dep = TRUE)'
+
+script:
+  - Rscript -e "R.Version()"
+  - Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
+  - Rscript -e "devtools::check(args = c('--as-cran'))"
