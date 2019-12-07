@@ -32,15 +32,22 @@ uknown kernel name is used it falls back to the default value.}
 \item{scaled}{\code{logical} specifing if the output values should be scaled. Default value is
 \code{FALSE}.}
 
-\item{grid}{\code{\link[sf]{sf}} \code{data.frame} outcome of function
-\code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}.}
+\item{grid}{either \code{\link[sf]{sf}} \code{data.frame} (outcome of function
+\code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}) or
+\code{\link[raster]{Raster-class}} (outcome of function \code{\link{create_raster}}).}
 }
 \value{
-\code{\link[sf]{sf}} \code{data.frame}.
+either \code{\link[sf]{sf}} \code{data.frame} or \code{\link[raster]{Raster-class}}
+depending on class of \code{grid} parameter.
 }
 \description{
 KDE for spatial data. The algorithm is heavily inspired by
 \href{https://github.com/qgis/QGIS/blob/b3d2619976a69d7fb67b884492da491dfaba287c/src/analysis/raster/qgskde.cpp}{Heatmap tool}
 in QGIS. The help for QGIS tools is provided \href{https://docs.qgis.org/testing/en/docs/user_manual/processing_algs/qgis/interpolation.html#heatmap-kernel-density-estimation}{at the QGIS website}.
 The a tutorial is provided \href{https://grindgis.com/software/heat-map-using-qgis}{here}.
+}
+\details{
+\code{grid} parameter specifies output of the function. KDE is calculated on the specified \code{grid}.
+If grid is \code{\link[raster]{Raster-class}} then outcome is also \code{\link[raster]{Raster-class}}.
+If grid is \code{\link[sf]{sf}} \code{data.frame} then outcome is also \code{\link[sf]{sf}} \code{data.frame}.
 }
