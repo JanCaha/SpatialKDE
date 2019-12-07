@@ -26,7 +26,7 @@ test_grid_not_projected <- test_grid %>% st_transform(4326)
 
 test_raster <- create_raster(test_data, cell_size = 100)
 
-test_raster_not_projected <- projectRaster(test_raster, crs = '+init=EPSG:4326')
+suppressWarnings(test_raster_not_projected <- projectRaster(test_raster, crs = '+init=EPSG:4326'))
 
 test_that("kde - wrong inputs", {
   expect_error(kde("a"), regexp = "Variable `points` must be of class `sf`, currently is has classes: character.")
@@ -48,7 +48,7 @@ test_that("kde - wrong inputs - grid input", {
 test_that("kde - wrong inputs - raster input", {
   expect_error(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
                    grid = test_raster_not_projected),
-               regexp = "Raster layer must be projected.")
+               regexp = "Raster layer `grid` must be projected.")
 })
 
 test_that("results", {
