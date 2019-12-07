@@ -141,6 +141,7 @@ kde <- function(points,
 
 #' @importFrom raster xyFromCell values
 #' @importFrom sf st_coordinates
+#' @importFrom methods setMethod
 setMethod(".kde",
           "RasterLayer",
           function(grid,
