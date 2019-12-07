@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • SpatialKDE</title>
+<title>Create raster — create_raster • SpatialKDE</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Create raster — create_raster" />
+<meta property="og:description" content="Create raster of equaly spaced cells. The distance between centre of cells
+in both x and y dimension is equal to cell_size." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +57,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -109,39 +112,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/JanCaha/SpatialKDE/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Create raster</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JanCaha/SpatialKDE/blob/master/R/create_raster.R'><code>R/create_raster.R</code></a></small>
+    <div class="hidden name"><code>create_raster.Rd</code></div>
     </div>
 
-    <div id="spatialkde-040" class="section level1">
-<h1 class="page-header">
-<a href="#spatialkde-040" class="anchor"></a>SpatialKDE 0.4.0</h1>
-<ul>
-<li><p>rename of <code>create_raster_rectangular()</code> to <code><a href="../reference/create_grid.html">create_grid_rectangular()</a></code> and <code>create_raster_hexagonal()</code> to <code><a href="../reference/create_grid.html">create_grid_hexagonal()</a></code> to avoid confusion about the type of outcome.</p></li>
-<li><p>fix of inner workings of <code><a href="../reference/create_grid.html">create_grid_rectangular()</a></code> and <code><a href="../reference/create_grid.html">create_grid_hexagonal()</a></code></p></li>
-<li><p>fix usage of kernell in function <code><a href="../reference/kde.html">kde()</a></code></p></li>
-<li><p>Added a <code>NEWS.md</code> file to track changes to the package.</p></li>
-</ul>
-</div>
-    <div id="spatialkde-032" class="section level1">
-<h1 class="page-header">
-<a href="#spatialkde-032" class="anchor"></a>SpatialKDE 0.3.2</h1>
-<ul>
-<li>Website via pkgdown</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Create raster of equaly spaced cells. The distance between centre of cells
+in both x and y dimension is equal to <code>cell_size</code>.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>create_raster</span>(<span class='no'>geometry</span>, <span class='no'>cell_size</span>, <span class='kw'>side_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>geometry</th>
+      <td><p><code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> containing geometry which should be cover by
+the raster.</p></td>
+    </tr>
+    <tr>
+      <th>cell_size</th>
+      <td><p><code>numeric</code> specifing the distance for equally spaced cells.</p></td>
+    </tr>
+    <tr>
+      <th>side_offset</th>
+      <td><p><code>numeric</code> specifing the side offset, distance added to the convex hull
+of input geometry to generate raster for KDE. Good estimate is usually the same value as band width of KDE.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code><a href='https://rdrr.io/pkg/raster/man/Raster-classes.html'>Raster-class</a></code></p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#spatialkde-040">0.4.0</a></li>
-        <li><a href="#spatialkde-032">0.3.2</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+    </ul>
 
+  </div>
 </div>
 
 

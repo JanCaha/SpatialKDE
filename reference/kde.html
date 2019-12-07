@@ -72,7 +72,7 @@ The a tutorial is provided here." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpatialKDE</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -170,14 +170,21 @@ uknown kernel name is used it falls back to the default value.</p></td>
     </tr>
     <tr>
       <th>grid</th>
-      <td><p><code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> outcome of function
-<code><a href='create_grid.html'>create_grid_rectangular</a></code> or <code><a href='create_grid.html'>create_grid_hexagonal</a></code>.</p></td>
+      <td><p>either <code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> (outcome of function
+<code><a href='create_grid.html'>create_grid_rectangular</a></code> or <code><a href='create_grid.html'>create_grid_hexagonal</a></code>) or
+<code><a href='https://rdrr.io/pkg/raster/man/Raster-classes.html'>Raster-class</a></code> (outcome of function <code><a href='create_raster.html'>create_raster</a></code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code>.</p>
+    <p>either <code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> or <code><a href='https://rdrr.io/pkg/raster/man/Raster-classes.html'>Raster-class</a></code>
+depending on class of <code>grid</code> parameter.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>grid</code> parameter specifies output of the function. KDE is calculated on the specified <code>grid</code>.
+If grid is <code><a href='https://rdrr.io/pkg/raster/man/Raster-classes.html'>Raster-class</a></code> then outcome is also <code><a href='https://rdrr.io/pkg/raster/man/Raster-classes.html'>Raster-class</a></code>.
+If grid is <code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> then outcome is also <code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -185,6 +192,7 @@ uknown kernel name is used it falls back to the default value.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
     </ul>
 
   </div>

@@ -72,7 +72,7 @@ st_convex_hull." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpatialKDE</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -150,12 +150,13 @@ the grid.</p></td>
     </tr>
     <tr>
       <th>cell_size</th>
-      <td><p><code>numeric</code> specifing the distance for equal spaced points or cells.</p></td>
+      <td><p><code>numeric</code> specifing the distance for equally spaced centers of polygons
+(rectangular or hexagonal).</p></td>
     </tr>
     <tr>
       <th>side_offset</th>
       <td><p><code>numeric</code> specifing the side offset, distance added to the convex hull
-to generate grid for KDE. Good estimate is usually the same value as band width of KDE.</p></td>
+of input geometry to generate grid for KDE. Good estimate is usually the same value as band width of KDE.</p></td>
     </tr>
     <tr>
       <th>only_inside</th>
