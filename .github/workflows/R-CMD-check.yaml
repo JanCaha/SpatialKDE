@@ -7,8 +7,6 @@ on:
       - src/**
       - DESCRIPTION
       - .github/workflows/R-CMD-check.yaml
-    tags-ignore:
-      - v**
 
 jobs:
   R-CMD-check:

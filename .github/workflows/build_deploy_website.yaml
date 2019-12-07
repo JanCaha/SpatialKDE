@@ -7,8 +7,6 @@ on:
       - DESCRIPTION
       - .github/workflows/build_deploy_website.yaml
       - NEWS.md
-    tags-ignore:
-      - v**
 
 jobs:
   pkgdown:
