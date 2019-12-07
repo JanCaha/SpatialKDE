@@ -26,7 +26,7 @@ test_grid_not_projected <- test_grid %>% st_transform(4326)
 
 test_raster <- create_raster(test_data, cell_size = 100)
 
-suppressWarnings(test_raster_not_projected <- projectRaster(test_raster, crs = '+init=EPSG:4326'))
+suppressWarnings(test_raster_not_projected <- projectRaster(test_raster, crs = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'))
 
 test_that("kde - wrong inputs", {
   expect_error(kde("a"), regexp = "Variable `points` must be of class `sf`, currently is has classes: character.")
