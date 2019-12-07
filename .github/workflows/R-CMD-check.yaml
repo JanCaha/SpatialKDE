@@ -5,6 +5,7 @@ on:
     paths:
       - R/**
       - src/**
+      - tests/**
       - DESCRIPTION
       - .github/workflows/R-CMD-check.yaml
 
