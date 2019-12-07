@@ -1,7 +1,7 @@
 Package: SpatialKDE
 Type: Package
 Title: Calculate Kernel Density Estimation for spatial data
-Version: 0.4.2
+Version: 0.5.0
 URL: https://jancaha.github.io/SpatialKDE/index.html, https://github.com/JanCaha/SpatialKDE
 Authors@R: 
     person(given = "Jan",
@@ -24,9 +24,11 @@ Imports:
     dplyr,
     glue,
     magrittr,
-    rlang
+    rlang,
+    methods,
+    raster
 Suggests:
     tmap,
     sp,
-    knitr
-  
+    knitr,
+    testthat (>= 2.1.0)
