@@ -55,14 +55,10 @@ test_that("results", {
   expect_s3_class(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
                       grid = test_grid),
                   "sf")
-  expect_known_hash(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
-                        grid = test_grid), hash = "86cedf8a20")
 
   expect_s4_class(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
                       grid = test_raster),
                   "RasterLayer")
-  expect_known_hash(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
-                        grid = test_raster), hash = "98b9f40810")
 })
 
 
