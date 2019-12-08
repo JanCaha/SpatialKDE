@@ -129,11 +129,11 @@ The a tutorial is provided <a href='https://grindgis.com/software/heat-map-using
     <pre class="usage"><span class='fu'>kde</span>(
   <span class='no'>points</span>,
   <span class='no'>band_width</span>,
-  <span class='no'>cell_size</span>,
   <span class='kw'>decay</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"quartic"</span>,
   <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>grid</span>
+  <span class='no'>grid</span>,
+  <span class='no'>cell_size</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -146,11 +146,6 @@ The a tutorial is provided <a href='https://grindgis.com/software/heat-map-using
     <tr>
       <th>band_width</th>
       <td><p><code>numeric</code> specifing the band width for KDE.</p></td>
-    </tr>
-    <tr>
-      <th>cell_size</th>
-      <td><p><code>numeric</code> specifing the distance for equal spaced points or cells. Must be
-higher than 0. Can be left out if <code>grid</code> is provided.</p></td>
     </tr>
     <tr>
       <th>decay</th>
@@ -172,7 +167,14 @@ uknown kernel name is used it falls back to the default value.</p></td>
       <th>grid</th>
       <td><p>either <code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code> <code>data.frame</code> (outcome of function
 <code><a href='create_grid.html'>create_grid_rectangular</a></code> or <code><a href='create_grid.html'>create_grid_hexagonal</a></code>) or
-<code><a href='https://rdrr.io/pkg/raster/man/Raster-classes.html'>Raster-class</a></code> (outcome of function <code><a href='create_raster.html'>create_raster</a></code>).</p></td>
+<code><a href='https://rdrr.io/pkg/raster/man/Raster-classes.html'>Raster-class</a></code> (outcome of function <code><a href='create_raster.html'>create_raster</a></code>).
+Does not have to be specified if <code>cell_size</code> is set.</p></td>
+    </tr>
+    <tr>
+      <th>cell_size</th>
+      <td><p><code>numeric</code> specifing the distance for equal spaced points. Must be
+higher than 0. Can be left out if <code>grid</code> is provided as <code>grid</code> is used instead.
+The code used to generate grid is <code><a href='create_grid.html'>create_grid_rectangular</a>(points, cell_size, band_width)</code>.</p></td>
     </tr>
     </table>
 
