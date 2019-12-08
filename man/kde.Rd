@@ -7,20 +7,17 @@
 kde(
   points,
   band_width,
-  cell_size,
   decay = 1,
   kernel = "quartic",
   scaled = FALSE,
-  grid
+  grid,
+  cell_size
 )
 }
 \arguments{
 \item{points}{\code{\link[sf]{sf}} \code{data.frame} containing only POINTS.}
 
 \item{band_width}{\code{numeric} specifing the band width for KDE.}
-
-\item{cell_size}{\code{numeric} specifing the distance for equal spaced points or cells. Must be
-higher than 0. Can be left out if \code{grid} is provided.}
 
 \item{decay}{\code{numeric} specifing the decay parameter for \code{"triangular"} kernel. For
 other kernels besides \code{"triangular"} the parameter is not used.}
@@ -34,7 +31,12 @@ uknown kernel name is used it falls back to the default value.}
 
 \item{grid}{either \code{\link[sf]{sf}} \code{data.frame} (outcome of function
 \code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}) or
-\code{\link[raster]{Raster-class}} (outcome of function \code{\link{create_raster}}).}
+\code{\link[raster]{Raster-class}} (outcome of function \code{\link{create_raster}}).
+Does not have to be specified if \code{cell_size} is set.}
+
+\item{cell_size}{\code{numeric} specifing the distance for equal spaced points. Must be
+higher than 0. Can be left out if \code{grid} is provided as \code{grid} is used instead.
+The code used to generate grid is \code{\link{create_grid_rectangular}(points, cell_size, band_width)}.}
 }
 \value{
 either \code{\link[sf]{sf}} \code{data.frame} or \code{\link[raster]{Raster-class}}
