@@ -61,4 +61,12 @@ test_that("results", {
                   "RasterLayer")
 })
 
-
+test_that("tests with hash on x86_64", {
+  skip_if_not(sessionInfo()$R.version$arch == "x86_64")
+  expect_known_hash(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
+                        grid = test_raster),
+                    hash = "98b9f40810")
+  expect_known_hash(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
+                        grid = test_grid),
+                    hash = "86cedf8a20")
+})
