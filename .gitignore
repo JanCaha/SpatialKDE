@@ -10,3 +10,4 @@ src/*.dll
 /docs
 /vignettes/*
 !/vignettes/*.Rmd
+/check
