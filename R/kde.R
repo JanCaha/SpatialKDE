@@ -13,8 +13,6 @@
 #'
 #' @param points \code{\link[sf]{sf}} \code{data.frame} containing only POINTS.
 #' @param band_width \code{numeric} specifing the band width for KDE.
-#' @param cell_size \code{numeric} specifing the distance for equal spaced points or cells. Must be
-#' higher than 0. Can be left out if \code{grid} is provided.
 #' @param decay \code{numeric} specifing the decay parameter for \code{"triangular"} kernel. For
 #' other kernels besides \code{"triangular"} the parameter is not used.
 #' @param kernel \code{character} specifing type of kernel to use. Available implemented kernels are
@@ -25,6 +23,8 @@
 #' @param grid  either \code{\link[sf]{sf}} \code{data.frame} (outcome of function
 #' \code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}) or
 #' \code{\link[raster]{Raster-class}} (outcome of function \code{\link{create_raster}}).
+#' @param cell_size \code{numeric} specifing the distance for equal spaced points or cells. Must be
+#' higher than 0. Can be left out if \code{grid} is provided.
 #'
 #' @return  either \code{\link[sf]{sf}} \code{data.frame} or \code{\link[raster]{Raster-class}}
 #' depending on class of \code{grid} parameter.
@@ -41,11 +41,11 @@
 #'
 kde <- function(points,
                 band_width,
-                cell_size,
                 decay = 1,
                 kernel = "quartic",
                 scaled = FALSE,
-                grid){
+                grid,
+                cell_size){
 
   available_kernels = c("uniform", "quartic", "triweight", "epanechnikov", "triangular")
 
