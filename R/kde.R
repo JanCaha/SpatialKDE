@@ -23,8 +23,10 @@
 #' @param grid  either \code{\link[sf]{sf}} \code{data.frame} (outcome of function
 #' \code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}) or
 #' \code{\link[raster]{Raster-class}} (outcome of function \code{\link{create_raster}}).
-#' @param cell_size \code{numeric} specifing the distance for equal spaced points or cells. Must be
-#' higher than 0. Can be left out if \code{grid} is provided.
+#' Does not have to be specified if \code{cell_size} is set.
+#' @param cell_size \code{numeric} specifing the distance for equal spaced points. Must be
+#' higher than 0. Can be left out if \code{grid} is provided as \code{grid} is used instead.
+#' The code used to generate grid is \code{\link{create_grid_rectangular}(points, cell_size, band_width)}.
 #'
 #' @return  either \code{\link[sf]{sf}} \code{data.frame} or \code{\link[raster]{Raster-class}}
 #' depending on class of \code{grid} parameter.
