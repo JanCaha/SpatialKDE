@@ -35,11 +35,20 @@ jobs:
           Rscript -e "remotes::install_deps(dependencies = TRUE)"
 
       - name: Check Package
-        run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"
+        run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error', check_dir = 'check')"
+
+      - name: List dirs
+        run: |
+          dir
+          cd check
+          dir
+          cd SpatialKDE.Rcheck
+          dir
+
 
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@master
         with:
           name: R-CMD-check-results
-          path: check
+          path: ./check/SpatialKDE.Rcheck/00check.log
