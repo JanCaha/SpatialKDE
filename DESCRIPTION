@@ -1,6 +1,6 @@
 Package: SpatialKDE
 Type: Package
-Title: Calculate Kernel Density Estimation for spatial data
+Title: Calculate Kernel Density Estimation for Spatial Data
 Version: 0.5.0
 URL: https://jancaha.github.io/SpatialKDE/index.html, https://github.com/JanCaha/SpatialKDE
 Authors@R: 
@@ -10,7 +10,10 @@ Authors@R:
            email = "jan.caha@outlook.com",
            comment = c(ORCID = "0000-0003-0165-0606"))
 Description: Calculate Kernel Density Estimation for spatial data. 
-  The algorithm is inspired by the tool Heatmap from QGIS.
+  The algorithm is inspired by the tool Heatmap from QGIS. The method is described by:
+  Hart, T., Zandbergen, P. (2014) <doi:10.1108/PIJPSM-04-2013-0039>, 
+  Nelson, T. A., Boots, B. (2008) <doi:10.1111/j.0906-7590.2008.05548.x>,
+  Chainey, S., Tompson, L., Uhlig, S.(2008) <doi:10.1057/palgrave.sj.8350066>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
