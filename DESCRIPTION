@@ -9,7 +9,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jan.caha@outlook.com",
            comment = c(ORCID = "0000-0003-0165-0606"))
-Description: Calculate Kernel Density Estimation for spatial data. 
+Description: Calculate Kernel Density Estimation (KDE) for spatial data. 
   The algorithm is inspired by the tool Heatmap from QGIS. The method is described by:
   Hart, T., Zandbergen, P. (2014) <doi:10.1108/PIJPSM-04-2013-0039>, 
   Nelson, T. A., Boots, B. (2008) <doi:10.1111/j.0906-7590.2008.05548.x>,
