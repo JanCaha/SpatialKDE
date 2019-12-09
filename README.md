@@ -5,7 +5,7 @@ Github actions:
 ![R-CMD-check](https://github.com/JanCaha/SpatialKDE/workflows/R-CMD-check/badge.svg)
 ![Windows Release](https://github.com/JanCaha/SpatialKDE/workflows/Build%20Windows%20Binaries%20and%20Create%20Release/badge.svg)
 ![Web deploy](https://github.com/JanCaha/SpatialKDE/workflows/Pkgdown%20-%20build%20and%20deploy%20website/badge.svg)
-![Lifecycle: experimental](https://https://img.shields.io/badge/Lifecycle-stable-green.svg)
+![Lifecycle: experimental](https://img.shields.io/badge/Lifecycle-stable-green.svg)
 
 Travis build - R-devel:
 [![Build Status](https://travis-ci.org/JanCaha/SpatialKDE.svg?branch=master)](https://travis-ci.org/JanCaha/SpatialKDE)
