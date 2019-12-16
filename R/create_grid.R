@@ -18,6 +18,13 @@
 #' @export
 #'
 #' @describeIn create_grid Create rectangular grid
+#'
+#' @examples
+#' library(sf)
+#' nc <- st_read(system.file("shape/nc.shp", package="sf")) %>% st_transform(32031)
+#' grid <- create_grid_hexagonal(nc, cell_size = 100000)
+#' grid <- create_grid_rectangular(nc, cell_size = 100000, only_inside = TRUE)
+#'
 create_grid_rectangular <- function(geometry, cell_size, side_offset = 0, only_inside = FALSE){
 
   .create_grid(geometry, cell_size, side_offset, only_inside, square = TRUE)

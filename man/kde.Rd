@@ -53,3 +53,13 @@ The a tutorial is provided \href{https://grindgis.com/software/heat-map-using-qg
 If grid is \code{\link[raster]{Raster-class}} then outcome is also \code{\link[raster]{Raster-class}}.
 If grid is \code{\link[sf]{sf}} \code{data.frame} then outcome is also \code{\link[sf]{sf}} \code{data.frame}.
 }
+\examples{
+library(sf)
+nc <- st_read(system.file("shape/nc.shp", package="sf")) \%>\% st_transform(32031)
+grid <- create_grid_hexagonal(nc, cell_size = 100000)
+points <- st_sample(nc, 500) \%>\% st_as_sf()
+kde_estimate_grid <- kde(points, band_width = 150000, grid = grid)
+raster <- create_raster(nc, cell_size = 100000)
+kde_estimate_raster <- kde(points, band_width = 150000, grid = raster)
+
+}

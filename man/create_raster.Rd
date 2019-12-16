@@ -22,3 +22,9 @@ of input geometry to generate raster for KDE. Good estimate is usually the same 
 Create raster of equaly spaced cells. The distance between centre of cells
 in both x and y dimension is equal to \code{cell_size}.
 }
+\examples{
+library(sf)
+nc <- st_read(system.file("shape/nc.shp", package="sf")) \%>\% st_transform(32031)
+raster <- create_raster(nc, cell_size = 100000)
+
+}

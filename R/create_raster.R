@@ -14,6 +14,12 @@
 #'
 #' @importFrom sf st_convex_hull st_buffer st_geometry st_union st_as_sf
 #' @importFrom raster raster
+#'
+#' @examples
+#' library(sf)
+#' nc <- st_read(system.file("shape/nc.shp", package="sf")) %>% st_transform(32031)
+#' raster <- create_raster(nc, cell_size = 100000)
+#'
 create_raster <- function(geometry, cell_size, side_offset = 0){
 
   .validate_sf(geometry)
