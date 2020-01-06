@@ -72,7 +72,7 @@ The a tutorial is provided here." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpatialKDE</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -132,6 +132,7 @@ The a tutorial is provided <a href='https://grindgis.com/software/heat-map-using
   <span class='kw'>decay</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"quartic"</span>,
   <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
   <span class='no'>grid</span>,
   <span class='no'>cell_size</span>
 )</pre>
@@ -162,6 +163,10 @@ uknown kernel name is used it falls back to the default value.</p></td>
       <th>scaled</th>
       <td><p><code>logical</code> specifing if the output values should be scaled. Default value is
 <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>weights</th>
+      <td><p><code>numeric</code> vector of weights for individual <code>points</code>.</p></td>
     </tr>
     <tr>
       <th>grid</th>
