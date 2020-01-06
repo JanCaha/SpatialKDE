@@ -20,6 +20,7 @@
 #' uknown kernel name is used it falls back to the default value.
 #' @param scaled \code{logical} specifing if the output values should be scaled. Default value is
 #' \code{FALSE}.
+#' @param weights \code{numeric} vector of weights for individual \code{points}.
 #' @param grid  either \code{\link[sf]{sf}} \code{data.frame} (outcome of function
 #' \code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}) or
 #' \code{\link[raster]{Raster-class}} (outcome of function \code{\link{create_raster}}).
@@ -37,7 +38,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom glue glue glue_collapse
 #' @importFrom Rcpp evalCpp
-#' @importFrom rlang .data
+#' @importFrom rlang .data is_double
 #'
 #' @useDynLib SpatialKDE
 #'
@@ -55,6 +56,7 @@ kde <- function(points,
                 decay = 1,
                 kernel = "quartic",
                 scaled = FALSE,
+                weights = c(),
                 grid,
                 cell_size){
 
@@ -65,6 +67,16 @@ kde <- function(points,
   .validate_projected(points)
 
   .validate_points(points)
+
+  if (length(weights) == 0) {
+    weights = rep(1, nrow(points))
+  }
+
+  if (!is_double(weights, n = nrow(points), finite = TRUE)) {
+    stop(glue::glue("All values of `weights` must be numerical and finite vector (no `NA`s, `Inf` or `-Inf`).",
+                    "The length of the vector must be equal to number of rows in `points`.",
+                    "Length weights is `{length(weights)}` and number of rows in poitns is `{nrow(points)}`."))
+  }
 
   if (missing(grid) & missing(cell_size)) {
     stop("Both variables `grid` and `cellsize` are not specified. Don't know how to create grid for KDE estimation.")
@@ -95,7 +107,8 @@ kde <- function(points,
                          band_width = band_width,
                          decay = decay,
                          kernel = kernel,
-                         scaled = scaled)
+                         scaled = scaled,
+                         weights = weights)
 
   return(kde_calculated)
 }
@@ -106,7 +119,8 @@ kde <- function(points,
                  band_width,
                  decay,
                  kernel,
-                 scaled) {
+                 scaled,
+                 weights) {
   UseMethod(".kde")
 }
 
@@ -117,7 +131,8 @@ kde <- function(points,
                     band_width,
                     decay,
                     kernel,
-                    scaled) {
+                    scaled,
+                    weights) {
 
   .validate_sf(grid)
 
@@ -142,7 +157,8 @@ kde <- function(points,
                              bw = band_width,
                              kernel = kernel,
                              scaled = scaled,
-                             decay = decay)
+                             decay = decay,
+                             weights = weights)
 
   grid <- grid %>%
     dplyr::mutate(kde_value = kde_values)
@@ -160,7 +176,8 @@ setMethod(".kde",
                    band_width,
                    decay,
                    kernel,
-                   scaled) {
+                   scaled,
+                   weights) {
 
             .validate_raster_projected(grid)
 
@@ -173,7 +190,8 @@ setMethod(".kde",
                                        bw = band_width,
                                        kernel = kernel,
                                        scaled = scaled,
-                                       decay = decay)
+                                       decay = decay,
+                                       weights = weights)
 
             raster::values(grid) <- kde_values
 

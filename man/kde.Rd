@@ -10,6 +10,7 @@ kde(
   decay = 1,
   kernel = "quartic",
   scaled = FALSE,
+  weights = c(),
   grid,
   cell_size
 )
@@ -28,6 +29,8 @@ uknown kernel name is used it falls back to the default value.}
 
 \item{scaled}{\code{logical} specifing if the output values should be scaled. Default value is
 \code{FALSE}.}
+
+\item{weights}{\code{numeric} vector of weights for individual \code{points}.}
 
 \item{grid}{either \code{\link[sf]{sf}} \code{data.frame} (outcome of function
 \code{\link{create_grid_rectangular}} or \code{\link{create_grid_hexagonal}}) or

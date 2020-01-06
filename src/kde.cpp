@@ -103,7 +103,8 @@ NumericVector kde_estimate(NumericMatrix fishnet,
                            double bw,
                            String kernel,
                            bool scaled = false,
-                           double decay = 1) {
+                           double decay = 1,
+                           NumericVector weights = NumericVector(0)) {
 
   int nrow = fishnet.nrow();
 
@@ -120,11 +121,17 @@ NumericVector kde_estimate(NumericMatrix fishnet,
 
       NumericVector v3 = v1-v2;
 
-      d += kde_element(sqrt(sum(pow(v3, 2.0))),
-                       bw,
-                       kernel,
-                       scaled,
-                       decay);
+      double w = 1;
+
+      if (weights.length() != 0) {
+        w = weights[j];
+      }
+
+      d += (w * kde_element(sqrt(sum(pow(v3, 2.0))),
+                           bw,
+                           kernel,
+                           scaled,
+                           decay));
 
     }
 
