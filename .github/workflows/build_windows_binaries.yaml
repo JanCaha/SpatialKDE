@@ -36,13 +36,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-            C:\"Program Files"\R\R-3.6.1\bin\Rscript.exe -e "Sys.setenv(TZ='Greenwich');install.packages(c('remotes', 'rcmdcheck', 'devtools', 'Rcpp'), repos = 'https://cran.rstudio.com/')"
-            C:\"Program Files"\R\R-3.6.1\bin\Rscript.exe -e "Sys.setenv(TZ='Greenwich');remotes::install_deps(dependencies = TRUE, type='win.binary')"
+            C:\"Program Files"\R\R-3.6.2\bin\Rscript.exe -e "Sys.setenv(TZ='Greenwich');install.packages(c('remotes', 'rcmdcheck', 'devtools', 'Rcpp'), repos = 'https://cran.rstudio.com/')"
+            C:\"Program Files"\R\R-3.6.2\bin\Rscript.exe -e "Sys.setenv(TZ='Greenwich');remotes::install_deps(dependencies = TRUE, type='win.binary')"
 
       - name: Build binary
         run: |
-            C:\"Program Files"\R\R-3.6.1\bin\Rscript.exe -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
-            C:\"Program Files"\R\R-3.6.1\bin\Rscript.exe -e "devtools::build(path = './release', binary = TRUE, args = c('--preclean'))"
+            C:\"Program Files"\R\R-3.6.2\bin\Rscript.exe -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
+            C:\"Program Files"\R\R-3.6.2\bin\Rscript.exe -e "devtools::build(path = './release', binary = TRUE, args = c('--preclean'))"
 
       - name: Create Release
         id: create_release
