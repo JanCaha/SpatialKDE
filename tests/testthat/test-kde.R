@@ -39,6 +39,15 @@ test_that("kde - wrong inputs", {
                  regexp = "Unknown `kernel` used.")
 })
 
+test_that("kde - wrong inputs - weights", {
+  expect_error(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
+                   grid = test_grid, weights = c("test")),
+               regexp = "All values of `weights` must be numerical and finite vector")
+  expect_error(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
+                   grid = test_grid, weights = c(5, 15, 30)),
+               regexp = "All values of `weights` must be numerical and finite vector")
+})
+
 test_that("kde - wrong inputs - grid input", {
   expect_error(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
                    grid = test_grid_not_projected),
@@ -54,6 +63,10 @@ test_that("kde - wrong inputs - raster input", {
 test_that("results", {
   expect_s3_class(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
                       grid = test_grid),
+                  "sf")
+
+  expect_s3_class(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
+                      grid = test_grid, weights = rnorm(nrow(test_data))),
                   "sf")
 
   expect_s4_class(kde(test_data, cell_size = 100, band_width = 100, kernel = "quartic",
