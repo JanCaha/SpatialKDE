@@ -33,7 +33,6 @@ r_github_packages:
 
 before_install:
   - Rscript -e 'install.packages("rgdal")'
-  - Rscript -e 'devtools::install_deps(dep = TRUE)'
 
 script:
   - Rscript -e "R.Version()"
