@@ -36,5 +36,5 @@ before_install:
 
 script:
   - Rscript -e "R.Version()"
-  #- Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
-  #- Rscript -e "devtools::check(args = c('--as-cran'))"
+  - Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
+  - Rscript -e "devtools::check(args = c('--as-cran'))"
