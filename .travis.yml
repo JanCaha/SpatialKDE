@@ -34,9 +34,9 @@ r_packages:
 before_script:
   - Rscript -e 'install.packages("rgdal", repos="http://R-Forge.R-project.org")'
   - Rscript -e 'install.packages("lwgeom", configure.args="--without-liblwgeom")'
-  - Rscript -e 'devtools::install_deps(dep = TRUE)'
+  #- Rscript -e 'devtools::install_deps(dep = TRUE)'
 
 script:
   - Rscript -e "R.Version()"
-  - Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
-  - Rscript -e "devtools::check(args = c('--as-cran'))"
+  #- Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
+  #- Rscript -e "devtools::check(args = c('--as-cran'))"
