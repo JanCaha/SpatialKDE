@@ -6,6 +6,8 @@ cache:
   - packages
   - ccache
 
+latex: false
+
 addons:
   apt:
     sources:
@@ -26,6 +28,9 @@ addons:
       - libnetcdf-dev
       - netcdf-bin
 
+r_github_packages:
+  - r-spatial/lwgeom
+
 #r_packages:
 #  - devtools
 #  - remotes
@@ -33,7 +38,6 @@ addons:
 
 before_install:
   - Rscript -e 'install.packages("rgdal", repos="http://R-Forge.R-project.org")'
-  - Rscript -e 'install.packages("lwgeom", configure.args="--without-liblwgeom")'
   #- Rscript -e 'devtools::install_deps(dep = TRUE)'
 
 script:
