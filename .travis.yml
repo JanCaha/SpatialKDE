@@ -1,7 +1,10 @@
 language: R
-cache: packages
 
 r: devel
+
+cache:
+  - packages
+  - ccache
 
 addons:
   apt:
@@ -30,6 +33,7 @@ r_packages:
 
 before_script:
   - Rscript -e 'install.packages("rgdal", repos="http://R-Forge.R-project.org")'
+  - Rscript -e 'install.packages("lwgeom", configure.args="--without-liblwgeom")'
   - Rscript -e 'devtools::install_deps(dep = TRUE)'
 
 script:
