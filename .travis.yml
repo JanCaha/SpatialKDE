@@ -31,7 +31,7 @@ addons:
 #  - remotes
 #  - rmarkdown
 
-before_script:
+before_install:
   - Rscript -e 'install.packages("rgdal", repos="http://R-Forge.R-project.org")'
   - Rscript -e 'install.packages("lwgeom", configure.args="--without-liblwgeom")'
   #- Rscript -e 'devtools::install_deps(dep = TRUE)'
