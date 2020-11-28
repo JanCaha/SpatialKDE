@@ -37,7 +37,7 @@ jobs:
 
       - name: Install R package pkgdown
         run: |
-          Rscript -e 'install.packages("pkgdown"))'
+          Rscript -e 'install.packages(c("pkgdown"))'
 
       - name: Install package
         run: R CMD INSTALL .
