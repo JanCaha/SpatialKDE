@@ -1,7 +1,7 @@
 Package: SpatialKDE
 Type: Package
 Title: Kernel Density Estimation for Spatial Data
-Version: 0.6.1
+Version: 0.6.2
 URL: https://jancaha.github.io/SpatialKDE/index.html, https://github.com/JanCaha/SpatialKDE
 Authors@R: 
     person(given = "Jan",
@@ -17,7 +17,7 @@ Description: Calculate Kernel Density Estimation (KDE) for spatial data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 LinkingTo: 
     Rcpp
@@ -28,6 +28,7 @@ Imports:
     glue,
     magrittr,
     rlang,
+    vctrs,
     methods,
     raster
 Suggests:
@@ -35,4 +36,6 @@ Suggests:
     sp,
     knitr,
     rgdal,
-    testthat (>= 2.1.0)
+    testthat (>= 2.99.0)
+Config/testthat/edition: 3
+Remotes: r-lib/testthat
