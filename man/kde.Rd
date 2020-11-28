@@ -8,7 +8,7 @@ kde(
   points,
   band_width,
   decay = 1,
-  kernel = "quartic",
+  kernel = c("quartic", "uniform", "triweight", "epanechnikov", "triangular"),
   scaled = FALSE,
   weights = c(),
   grid,

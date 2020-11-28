@@ -38,7 +38,8 @@
 #' @importFrom dplyr mutate
 #' @importFrom glue glue glue_collapse
 #' @importFrom Rcpp evalCpp
-#' @importFrom rlang .data is_double
+#' @importFrom rlang .data is_double is_integer
+#' @importFrom vctrs vec_cast
 #'
 #' @useDynLib SpatialKDE
 #'
@@ -54,13 +55,13 @@
 kde <- function(points,
                 band_width,
                 decay = 1,
-                kernel = "quartic",
+                kernel = c("quartic", "uniform", "triweight", "epanechnikov", "triangular"),
                 scaled = FALSE,
                 weights = c(),
                 grid,
                 cell_size){
 
-  available_kernels = c("uniform", "quartic", "triweight", "epanechnikov", "triangular")
+  kernel <- match.arg(kernel)
 
   .validate_sf(points)
 
@@ -70,6 +71,10 @@ kde <- function(points,
 
   if (length(weights) == 0) {
     weights = rep(1, nrow(points))
+  }
+
+  if (is_integer(weights, n = nrow(points))) {
+    weights <- vctrs::vec_cast(weights, double())
   }
 
   if (!is_double(weights, n = nrow(points), finite = TRUE)) {
@@ -93,14 +98,6 @@ kde <- function(points,
   }
 
   .validate_bandwidth(band_width)
-
-
-  if (!(kernel %in% available_kernels)) {
-    warning(glue::glue("Unknown `kernel` used. The implemented kernels are: ",
-                       glue::glue_collapse(available_kernels, sep = ", "), ". ",
-                       "Using `quartic` kernel as default."))
-    kernel = available_kernels[2]
-  }
 
   kde_calculated <- .kde(grid = grid,
                          points = points,
