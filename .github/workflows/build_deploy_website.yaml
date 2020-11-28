@@ -32,8 +32,12 @@ jobs:
 
       - name: Install R package dependencies
         run: |
-          Rscript -e 'install.packages(c("remotes", "devtools", "pkgdown"))'
+          Rscript -e 'install.packages(c("remotes", "devtools"))'
           Rscript -e 'remotes::install_deps(dependencies = TRUE)'
+
+      - name: Install R package pkgdown
+        run: |
+          Rscript -e 'install.packages("pkgdown"))'
 
       - name: Install package
         run: R CMD INSTALL .
