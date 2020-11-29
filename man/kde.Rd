@@ -18,16 +18,16 @@ kde(
 \arguments{
 \item{points}{\code{\link[sf]{sf}} \code{data.frame} containing only POINTS.}
 
-\item{band_width}{\code{numeric} specifing the band width for KDE.}
+\item{band_width}{\code{numeric} specifying the band width for KDE.}
 
-\item{decay}{\code{numeric} specifing the decay parameter for \code{"triangular"} kernel. For
+\item{decay}{\code{numeric} specifying the decay parameter for \code{"triangular"} kernel. For
 other kernels besides \code{"triangular"} the parameter is not used.}
 
-\item{kernel}{\code{character} specifing type of kernel to use. Available implemented kernels are
+\item{kernel}{\code{character} specifying type of kernel to use. Available implemented kernels are
 \code{"uniform", "quartic", "triweight", "epanechnikov", "triangular"}. Default is \code{"quartic"} and if
-uknown kernel name is used it falls back to the default value.}
+unknown kernel name is used it falls back to the default value.}
 
-\item{scaled}{\code{logical} specifing if the output values should be scaled. Default value is
+\item{scaled}{\code{logical} specifying if the output values should be scaled. Default value is
 \code{FALSE}.}
 
 \item{weights}{\code{numeric} vector of weights for individual \code{points}.}
@@ -37,7 +37,7 @@ uknown kernel name is used it falls back to the default value.}
 \code{\link[raster]{Raster-class}} (outcome of function \code{\link{create_raster}}).
 Does not have to be specified if \code{cell_size} is set.}
 
-\item{cell_size}{\code{numeric} specifing the distance for equal spaced points. Must be
+\item{cell_size}{\code{numeric} specifying the distance for equal spaced points. Must be
 higher than 0. Can be left out if \code{grid} is provided as \code{grid} is used instead.
 The code used to generate grid is \code{\link{create_grid_rectangular}(points, cell_size, band_width)}.}
 }

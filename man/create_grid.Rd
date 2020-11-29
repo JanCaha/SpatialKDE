@@ -23,20 +23,20 @@ create_grid_hexagonal(
 \item{geometry}{\code{\link[sf]{sf}} \code{data.frame} containing geometry which should be cover by
 the grid.}
 
-\item{cell_size}{\code{numeric} specifing the distance for equally spaced centers of polygons
+\item{cell_size}{\code{numeric} specifying the distance for equally spaced centers of polygons
 (rectangular or hexagonal).}
 
-\item{side_offset}{\code{numeric} specifing the side offset, distance added to the convex hull
+\item{side_offset}{\code{numeric} specifying the side offset, distance added to the convex hull
 of input geometry to generate grid for KDE. Good estimate is usually the same value as band width of KDE.}
 
-\item{only_inside}{\code{logical} specifing if the grid cells should be generated only inside of the
+\item{only_inside}{\code{logical} specifying if the grid cells should be generated only inside of the
 geometry. Default value is \code{FALSE}.}
 }
 \value{
 \code{\link[sf]{sf}} \code{data.frame}.
 }
 \description{
-Create grid of equaly spaced rectangles or hexagons. The distance between centre points
+Create grid of equally spaced rectangles or hexagons. The distance between centre points
 in both x and y dimension is equal to \code{cell_size}. The function is effectively a wrapper around
 \code{\link[sf]{st_make_grid}} with a little bit of preprocessing including generation of grid only inside
 \code{\link[sf]{st_convex_hull}}.

@@ -10,16 +10,16 @@ create_raster(geometry, cell_size, side_offset = 0)
 \item{geometry}{\code{\link[sf]{sf}} \code{data.frame} containing geometry which should be cover by
 the raster.}
 
-\item{cell_size}{\code{numeric} specifing the distance for equally spaced cells.}
+\item{cell_size}{\code{numeric} specifying the distance for equally spaced cells.}
 
-\item{side_offset}{\code{numeric} specifing the side offset, distance added to the convex hull
+\item{side_offset}{\code{numeric} specifying the side offset, distance added to the convex hull
 of input geometry to generate raster for KDE. Good estimate is usually the same value as band width of KDE.}
 }
 \value{
 \code{\link[raster]{Raster-class}}
 }
 \description{
-Create raster of equaly spaced cells. The distance between centre of cells
+Create raster of equally spaced cells. The distance between centre of cells
 in both x and y dimension is equal to \code{cell_size}.
 }
 \examples{
