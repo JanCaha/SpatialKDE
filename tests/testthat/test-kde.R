@@ -80,3 +80,17 @@ test_that("results", {
   ),
   "RasterLayer")
 })
+
+test_that("weights", {
+
+  load_libraries()
+
+  expect_s3_class(kde(test_data(), cell_size = 100, band_width = 100, kernel = "quartic",
+                      weights = test_weights_double(), grid = test_grid()),
+                  "sf")
+
+  expect_s3_class(kde(test_data(), cell_size = 100, band_width = 100, kernel = "quartic",
+                      weights = test_weights_integer(), grid = test_grid()),
+                  "sf")
+
+})

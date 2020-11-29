@@ -54,3 +54,15 @@ test_raster_not_projected <- function(){
 
   test_raster_not_projected
 }
+
+test_weights_double <- function(){
+  number = nrow(test_data())
+
+  runif(number)
+}
+
+test_weights_integer <- function(){
+  number = nrow(test_data())
+
+  as.integer(runif(number) * 10)
+}
