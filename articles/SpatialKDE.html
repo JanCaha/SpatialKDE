@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -56,7 +56,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/JanCaha/SpatialKDE/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -70,14 +70,13 @@
 
       
 
-      </header><script src="SpatialKDE_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="SpatialKDE_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="SpatialKDE_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="SpatialKDE_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>SpatialKDE quickstart</h1>
                         <h4 class="author">Jan Caha</h4>
             
-            <h4 class="date">2020-11-29 14:50:46</h4>
+            <h4 class="date">2021-01-28 09:58:59</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JanCaha/SpatialKDE/blob/master/vignettes/SpatialKDE.Rmd"><code>vignettes/SpatialKDE.Rmd</code></a></small>
       <div class="hidden name"><code>SpatialKDE.Rmd</code></div>
@@ -141,10 +140,10 @@
 <code class="sourceCode R"><span class="va">raster_meuse</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/create_raster.html">create_raster</a></span><span class="op">(</span>cell_size <span class="op">=</span> <span class="va">cell_size</span>, side_offset <span class="op">=</span> <span class="va">band_width</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
-## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in CRS
+## = prefer_proj): Discarded datum Unknown based on Bessel 1841 ellipsoid in Proj4
 ## definition</code></pre>
 <pre><code>## Warning in showSRID(SRS_string, format = "PROJ", multiline = "NO", prefer_proj =
-## prefer_proj): Discarded datum Amersfoort in CRS definition</code></pre>
+## prefer_proj): Discarded datum Amersfoort in Proj4 definition</code></pre>
 <p>At this moment it is possible to calculate KDE using <code><a href="../reference/kde.html">kde()</a></code> function with specified settings.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">kde</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op">%&gt;%</span> 
