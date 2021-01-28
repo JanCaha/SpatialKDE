@@ -121,8 +121,9 @@ kde <- function(points,
   UseMethod(".kde")
 }
 
-#' @importFrom sf st_centroid st_coordinates
+#' @importFrom sf st_centroid st_coordinates st_crs st_transform
 #' @importFrom dplyr mutate
+#' @importFrom glue glue
 .kde.sf <- function(grid,
                     points,
                     band_width,
@@ -147,6 +148,14 @@ kde <- function(points,
       grid_points <- grid %>%
         sf::st_centroid(of_largest_polygon = TRUE)
     )
+  }
+
+  if (sf::st_crs(points) != sf::st_crs(grid_points)) {
+    message(glue::glue("`points` are transformed into `grid` CRS to make coordinates match. ",
+                       "You may want to do this manually using `st_transform()` function to ",
+                       "have better control over the process."))
+    points <- points %>%
+      sf::st_transform(crs = st_crs(grid_points))
   }
 
   kde_values <- kde_estimate(sf::st_coordinates(grid_points),
