@@ -16,6 +16,11 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - uses: r-lib/actions/setup-pandoc@master
 
+      - name: Print values
+        run: |
+          echo ${{ github.event.repository.name }}
+          echo ${{ github.repository_owner }}
+
       - name: Install Linux libraries
         run: |
           sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
