@@ -1,3 +1,7 @@
+# SpatialKDE 0.7.0
+
+* global option `options(SpatialKDE.suppres_message = TRUE)` can be used to suppress using centroids message from `kde()`
+
 # SpatialKDE 0.6.2
 
 * fix problem with integer `weights`
