@@ -1,10 +1,10 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   SpatialKDE: SpatialKDE.html
-last_built: 2021-04-22T09:08Z
+last_built: 2022-02-09T14:55Z
 urls:
-  reference: https://jancaha.github.io/SpatialKDE//reference
-  article: https://jancaha.github.io/SpatialKDE//articles
+  reference: https://jancaha.github.io/SpatialKDE/reference
+  article: https://jancaha.github.io/SpatialKDE/articles
 

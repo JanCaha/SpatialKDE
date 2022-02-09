@@ -1,21 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jancaha.github.io/SpatialKDE//index.html</loc>
+    <loc>https://jancaha.github.io/SpatialKDE/404.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/SpatialKDE//reference/create_grid.html</loc>
+    <loc>https://jancaha.github.io/SpatialKDE/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/SpatialKDE//reference/create_raster.html</loc>
+    <loc>https://jancaha.github.io/SpatialKDE/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/SpatialKDE//reference/kde.html</loc>
+    <loc>https://jancaha.github.io/SpatialKDE/articles/SpatialKDE.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/SpatialKDE//reference/pipe.html</loc>
+    <loc>https://jancaha.github.io/SpatialKDE/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/SpatialKDE//articles/SpatialKDE.html</loc>
+    <loc>https://jancaha.github.io/SpatialKDE/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/SpatialKDE/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/SpatialKDE/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/SpatialKDE/reference/create_grid.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/SpatialKDE/reference/create_raster.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/SpatialKDE/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/SpatialKDE/reference/kde.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/SpatialKDE/reference/pipe.html</loc>
   </url>
 </urlset>
