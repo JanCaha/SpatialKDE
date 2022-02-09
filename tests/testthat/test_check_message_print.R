@@ -1,5 +1,7 @@
 test_that("check_message_print", {
 
+  options(SpatialKDE.suppres_message = NULL)
+
   r <- check_message_print()
 
   expect_true(r)
