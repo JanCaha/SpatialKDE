@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // kde_estimate
 NumericVector kde_estimate(NumericMatrix fishnet, NumericMatrix points, double bw, String kernel, bool scaled, double decay, NumericVector weights);
 RcppExport SEXP _SpatialKDE_kde_estimate(SEXP fishnetSEXP, SEXP pointsSEXP, SEXP bwSEXP, SEXP kernelSEXP, SEXP scaledSEXP, SEXP decaySEXP, SEXP weightsSEXP) {

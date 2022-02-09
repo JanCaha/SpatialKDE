@@ -61,6 +61,8 @@ test_that("results", {
 
   load_libraries()
 
+  options(SpatialKDE.suppres_message = TRUE)
+
   expect_message(kde(test_data(), cell_size = 100, band_width = 100, kernel = "quartic",
                      grid = test_grid() %>% sf::st_transform(crs = sf::st_crs(5514))),
                  "`points` are transformed into `grid` CRS to make coordinates match")
@@ -88,6 +90,8 @@ test_that("results", {
 test_that("weights", {
 
   load_libraries()
+
+  options(SpatialKDE.suppres_message = TRUE)
 
   expect_s3_class(kde(test_data(), cell_size = 100, band_width = 100, kernel = "quartic",
                       weights = test_weights_double(), grid = test_grid()),
