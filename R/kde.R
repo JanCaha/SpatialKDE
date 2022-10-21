@@ -41,7 +41,7 @@
 #' @importFrom rlang .data is_double is_integer
 #' @importFrom vctrs vec_cast
 #'
-#' @useDynLib SpatialKDE
+#' @useDynLib SpatialKDE, .registration = TRUE
 #'
 #' @examples
 #' library(sf)
