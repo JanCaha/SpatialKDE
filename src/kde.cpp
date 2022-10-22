@@ -1,5 +1,6 @@
 // source of the inspiration for the function
 // https://github.com/qgis/QGIS/blob/b3d2619976a69d7fb67b884492da491dfaba287c/src/analysis/raster/qgskde.cpp
+#include <R.h>
 #include <cpp11/R.hpp>
 #include <cpp11/doubles.hpp>
 #include <cpp11/matrix.hpp>
@@ -106,39 +107,42 @@ double distance(cpp11::doubles a, cpp11::doubles b) {
 }
 
 [[cpp11::register]]
-cpp11::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishnet,
-                           cpp11::doubles_matrix<cpp11::by_row> points,
-                           double bw,
-                           std::string kernel,
-                           bool scaled,
-                           double decay,
-                           cpp11::doubles weights = cpp11::doubles(0)) {
+cpp11::writable::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishnet,
+                                      cpp11::doubles_matrix<cpp11::by_row> points,
+                                      double bw,
+                                      std::string kernel,
+                                      bool scaled,
+                                      double decay,
+                                      cpp11::doubles weights) {
 
   cpp11::writable::doubles out(fishnet.nrow());
 
-  cpp11::unwind_protect([&] {
 
-  for (int i; i < fishnet.nrow(); i++) {
+  for (int i = 0; i < fishnet.nrow(); i++) {
 
     double result = 0;
 
     auto fishnet_row_auto = fishnet[i];
 
     cpp11::writable::doubles fishnet_row(fishnet.ncol());
-    cpp11::writable::doubles points_row(points.ncol());
 
+    int k = 0;
     for (auto value : fishnet_row_auto) {
-      fishnet_row.push_back(value);
+      fishnet_row[k] = value;
+      k++;
     }
 
     double w = 1;
 
-    for (int j=0; j < points.nrow(); j++) {
+    for (int j = 0; j < points.nrow(); j++) {
 
       auto points_row_auto = points[j];
+      cpp11::writable::doubles points_row(points.ncol());
 
+      int k = 0;
       for (auto value : points_row_auto) {
-        points_row.push_back(value);
+        points_row[k] = value;
+        k++;
       }
 
       if (weights.size() != 0) {
@@ -155,8 +159,6 @@ cpp11::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishnet,
     out[i] = result;
     cpp11::check_user_interrupt();
   }
-
-  });
 
   return out;
 }
