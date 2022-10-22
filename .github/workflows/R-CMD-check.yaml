@@ -29,19 +29,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
-      - name: Cache R packages
-        uses: actions/cache@v2
-        if: runner.os != 'Windows'
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ hashFiles('NAMESPACE') }}
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 2
           extra-packages: |
             any::rcmdcheck
             any::remotes
+            any::devtools
 
       - name: Check Package
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error', check_dir = 'check')"
