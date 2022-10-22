@@ -6,7 +6,7 @@
 #include <R_ext/Visibility.h>
 
 // kde.cpp
-cpp11::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishnet, cpp11::doubles_matrix<cpp11::by_row> points, double bw, std::string kernel, bool scaled, double decay, cpp11::doubles weights);
+cpp11::writable::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishnet, cpp11::doubles_matrix<cpp11::by_row> points, double bw, std::string kernel, bool scaled, double decay, cpp11::doubles weights);
 extern "C" SEXP _SpatialKDE_kde_estimate(SEXP fishnet, SEXP points, SEXP bw, SEXP kernel, SEXP scaled, SEXP decay, SEXP weights) {
   BEGIN_CPP11
     return cpp11::as_sexp(kde_estimate(cpp11::as_cpp<cpp11::decay_t<cpp11::doubles_matrix<cpp11::by_row>>>(fishnet), cpp11::as_cpp<cpp11::decay_t<cpp11::doubles_matrix<cpp11::by_row>>>(points), cpp11::as_cpp<cpp11::decay_t<double>>(bw), cpp11::as_cpp<cpp11::decay_t<std::string>>(kernel), cpp11::as_cpp<cpp11::decay_t<bool>>(scaled), cpp11::as_cpp<cpp11::decay_t<double>>(decay), cpp11::as_cpp<cpp11::decay_t<cpp11::doubles>>(weights)));
