@@ -37,11 +37,11 @@ jobs:
           key: ${{ runner.os }}-r-${{ hashFiles('NAMESPACE') }}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
-        extra-packages: |
-          any::rcmdcheck
-          any::remotes
         with:
           cache-version: 2
+          extra-packages: |
+            any::rcmdcheck
+            any::remotes
 
       - name: Check Package
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error', check_dir = 'check')"
