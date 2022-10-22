@@ -22,7 +22,7 @@ VignetteBuilder: knitr
 LinkingTo: cpp11
 SystemRequirements: C++11
 Imports: 
-    Rcpp,
+    cpp11,
     sf,
     dplyr,
     glue,
