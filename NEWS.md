@@ -1,3 +1,7 @@
+# SpatialKDE 0.8.0
+
+* internal rewrite from using **Rcpp** package to **cpp11**, this change should be invisble to user, only relates to needed dependencies
+
 # SpatialKDE 0.7.0
 
 * global option `options(SpatialKDE.suppres_message = TRUE)` can be used to suppress using centroids message from `kde()`
