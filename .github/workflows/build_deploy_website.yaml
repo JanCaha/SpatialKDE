@@ -2,6 +2,8 @@ name: Pkgdown - build and deploy website
 
 on:
   push:
+    branches:
+      - master
     paths:
       - R/**
       - DESCRIPTION
