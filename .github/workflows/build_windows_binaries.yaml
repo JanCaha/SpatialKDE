@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: File Name Create
         id: file_name
@@ -36,7 +36,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-            C:\"Program Files"\R\R-3.6.2\bin\Rscript.exe -e "Sys.setenv(TZ='Greenwich');install.packages(c('remotes', 'rcmdcheck', 'devtools', 'Rcpp'), repos = 'https://cran.rstudio.com/')"
+            C:\"Program Files"\R\R-3.6.2\bin\Rscript.exe -e "Sys.setenv(TZ='Greenwich');install.packages(c('remotes', 'rcmdcheck', 'devtools', 'cpp11'), repos = 'https://cran.rstudio.com/')"
             C:\"Program Files"\R\R-3.6.2\bin\Rscript.exe -e "Sys.setenv(TZ='Greenwich');remotes::install_deps(dependencies = TRUE, type='win.binary')"
 
       - name: Build binary
