@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpatialKDE</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.0</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@
       <h1 data-toc-skip>SpatialKDE quickstart</h1>
                         <h4 data-toc-skip class="author">Jan Caha</h4>
             
-            <h4 data-toc-skip class="date">2022-02-09 15:23:12</h4>
+            <h4 data-toc-skip class="date">2022-10-24 20:53:30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JanCaha/SpatialKDE/blob/HEAD/vignettes/SpatialKDE.Rmd" class="external-link"><code>vignettes/SpatialKDE.Rmd</code></a></small>
       <div class="hidden name"><code>SpatialKDE.Rmd</code></div>
@@ -91,41 +91,41 @@
 </h2>
 <p>First we load all necessary packages.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jancaha.github.io/SpatialKDE/index.html">SpatialKDE</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/sp/" class="external-link">sp</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmap" class="external-link">tmap</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jancaha.github.io/SpatialKDE/index.html">SpatialKDE</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/sp/" class="external-link">sp</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap" class="external-link">tmap</a></span><span class="op">)</span></span></code></pre></div>
 <p>Then we load the example dataset and prepare it into expected format of <code>sf</code> <code>data.frame</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">meuse</span><span class="op">)</span>
-
-<span class="va">meuse</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, dim <span class="op">=</span> <span class="st">"XY"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_set_crs</a></span><span class="op">(</span><span class="fl">28992</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">meuse</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">meuse</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, dim <span class="op">=</span> <span class="st">"XY"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_set_crs</a></span><span class="op">(</span><span class="fl">28992</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s define variables necessary for KDE estimation, cell size of the resulting grid and band width of points.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cell_size</span> <span class="op">&lt;-</span> <span class="fl">100</span>
-<span class="va">band_width</span> <span class="op">&lt;-</span> <span class="fl">150</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cell_size</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span><span class="va">band_width</span> <span class="op">&lt;-</span> <span class="fl">150</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="vector-grid">Vector grid<a class="anchor" aria-label="anchor" href="#vector-grid"></a>
 </h3>
 <p>Now we can prepare grid for KDE estimation. We prepare rectangular grid (hexagonal is the second option) with given cell size which is slightly bigger than convex hull of the data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grid_meuse</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/create_grid.html">create_grid_rectangular</a></span><span class="op">(</span>cell_size <span class="op">=</span> <span class="va">cell_size</span>, side_offset <span class="op">=</span> <span class="va">band_width</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">grid_meuse</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/create_grid.html">create_grid_rectangular</a></span><span class="op">(</span>cell_size <span class="op">=</span> <span class="va">cell_size</span>, side_offset <span class="op">=</span> <span class="va">band_width</span><span class="op">)</span></span></code></pre></div>
 <p>At this moment it is possible to calculate KDE using <code><a href="../reference/kde.html">kde()</a></code> function with specified settings.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">kde</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/kde.html">kde</a></span><span class="op">(</span>band_width <span class="op">=</span> <span class="va">band_width</span>, kernel <span class="op">=</span> <span class="st">"quartic"</span>, grid <span class="op">=</span> <span class="va">grid_meuse</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Using centroids instead of provided `grid` geometries to calculate KDE estimates.</span></code></pre>
+<code class="sourceCode R"><span><span class="va">kde</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/kde.html">kde</a></span><span class="op">(</span>band_width <span class="op">=</span> <span class="va">band_width</span>, kernel <span class="op">=</span> <span class="st">"quartic"</span>, grid <span class="op">=</span> <span class="va">grid_meuse</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Using centroids instead of provided `grid` geometries to calculate KDE estimates.</span></span></code></pre>
 <p>The result can be visualized using <code>tmap</code> package.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">kde</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"kde_value"</span>, palette <span class="op">=</span> <span class="st">"viridis"</span>, title <span class="op">=</span> <span class="st">"KDE Estimate"</span><span class="op">)</span> <span class="op">+</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">meuse</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_symbols.html" class="external-link">tm_bubbles</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">kde</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"kde_value"</span>, palette <span class="op">=</span> <span class="st">"viridis"</span>, title <span class="op">=</span> <span class="st">"KDE Estimate"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">meuse</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_symbols.html" class="external-link">tm_bubbles</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="SpatialKDE_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
 <div class="section level3">
@@ -133,19 +133,19 @@
 </h3>
 <p>Now we can prepare raster for KDE estimation. We prepare raster with given cell size which is slightly bigger than convex hull of the data.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">raster_meuse</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/create_raster.html">create_raster</a></span><span class="op">(</span>cell_size <span class="op">=</span> <span class="va">cell_size</span>, side_offset <span class="op">=</span> <span class="va">band_width</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">raster_meuse</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/create_raster.html">create_raster</a></span><span class="op">(</span>cell_size <span class="op">=</span> <span class="va">cell_size</span>, side_offset <span class="op">=</span> <span class="va">band_width</span><span class="op">)</span></span></code></pre></div>
 <p>At this moment it is possible to calculate KDE using <code><a href="../reference/kde.html">kde()</a></code> function with specified settings.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">kde</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/kde.html">kde</a></span><span class="op">(</span>band_width <span class="op">=</span> <span class="va">band_width</span>, kernel <span class="op">=</span> <span class="st">"triweight"</span>, grid <span class="op">=</span> <span class="va">raster_meuse</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">kde</span> <span class="op">&lt;-</span> <span class="va">meuse</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/kde.html">kde</a></span><span class="op">(</span>band_width <span class="op">=</span> <span class="va">band_width</span>, kernel <span class="op">=</span> <span class="st">"triweight"</span>, grid <span class="op">=</span> <span class="va">raster_meuse</span><span class="op">)</span></span></code></pre></div>
 <p>The result can be visualized using <code>tmap</code> package.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">kde</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_raster.html" class="external-link">tm_raster</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"viridis"</span>, title <span class="op">=</span> <span class="st">"KDE Estimate"</span><span class="op">)</span> <span class="op">+</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">meuse</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_symbols.html" class="external-link">tm_bubbles</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span> 
-<span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html" class="external-link">tm_layout</a></span><span class="op">(</span>legend.outside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">kde</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_raster.html" class="external-link">tm_raster</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"viridis"</span>, title <span class="op">=</span> <span class="st">"KDE Estimate"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">meuse</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_symbols.html" class="external-link">tm_bubbles</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html" class="external-link">tm_layout</a></span><span class="op">(</span>legend.outside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="SpatialKDE_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
 </div>
@@ -168,7 +168,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
