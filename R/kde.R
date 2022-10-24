@@ -37,11 +37,10 @@
 #' @importFrom sf st_sf st_coordinates st_geometry_type st_centroid
 #' @importFrom dplyr mutate
 #' @importFrom glue glue glue_collapse
-#' @importFrom Rcpp evalCpp
 #' @importFrom rlang .data is_double is_integer
 #' @importFrom vctrs vec_cast
 #'
-#' @useDynLib SpatialKDE
+#' @useDynLib SpatialKDE, .registration = TRUE
 #'
 #' @examples
 #' library(sf)

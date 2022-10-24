@@ -1,9 +1,11 @@
 // source of the inspiration for the function
 // https://github.com/qgis/QGIS/blob/b3d2619976a69d7fb67b884492da491dfaba287c/src/analysis/raster/qgskde.cpp
-#include <Rcpp.h>
+#include <R.h>
+#include <cpp11/R.hpp>
+#include <cpp11/doubles.hpp>
+#include <cpp11/matrix.hpp>
+#include <RProgress.h>
 #include <math.h>
-
-using namespace Rcpp;
 
 // uniform kernel
 double uniformKernel(double d, double bw, bool scaled){
@@ -71,7 +73,7 @@ double triangularKernel(double d, double bw, bool scaled, double decay){
   }
 }
 
-double kde_element(double d, double bw, String kernel, bool scaled, double decay){
+double kde_element(double d, double bw, std::string kernel, bool scaled, double decay){
   if (d <= bw) {
     if (kernel == "uniform") {
       return uniformKernel(d, bw, scaled);
@@ -97,46 +99,71 @@ double kde_element(double d, double bw, String kernel, bool scaled, double decay
   }
 }
 
-// [[Rcpp::export]]
-NumericVector kde_estimate(NumericMatrix fishnet,
-                           NumericMatrix points,
-                           double bw,
-                           String kernel,
-                           bool scaled = false,
-                           double decay = 1,
-                           NumericVector weights = NumericVector(0)) {
+double distance(cpp11::doubles a, cpp11::doubles b) {
+  double dist = 0;
+  for (int i=0; i < a.size(); i++){
+    dist += std::pow(a[i] - b[i], 2);
+  }
+  return std::sqrt(dist);
+}
 
-  int nrow = fishnet.nrow();
+[[cpp11::register]]
+cpp11::writable::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishnet,
+                                      cpp11::doubles_matrix<cpp11::by_row> points,
+                                      double bw,
+                                      std::string kernel,
+                                      bool scaled,
+                                      double decay,
+                                      cpp11::doubles weights) {
 
-  NumericVector out(nrow);
+  cpp11::writable::doubles out(fishnet.nrow());
 
-  for (int i = 0; i < nrow; i++) {
+  RProgress::RProgress pb("Done: [:bar] .");
+  pb.set_total(fishnet.nrow());
 
-    double d = 0;
+  for (int i = 0; i < fishnet.nrow(); i++) {
+
+    double result = 0;
+
+    auto fishnet_row_auto = fishnet[i];
+
+    cpp11::writable::doubles fishnet_row(fishnet.ncol());
+
+    int k = 0;
+    for (auto value : fishnet_row_auto) {
+      fishnet_row[k] = value;
+      k++;
+    }
+
+    double w = 1;
 
     for (int j = 0; j < points.nrow(); j++) {
 
-      NumericVector v1 = fishnet.row(i);
-      NumericVector v2 = points.row(j);
+      auto points_row_auto = points[j];
+      cpp11::writable::doubles points_row(points.ncol());
 
-      NumericVector v3 = v1-v2;
+      int k = 0;
+      for (auto value : points_row_auto) {
+        points_row[k] = value;
+        k++;
+      }
 
-      double w = 1;
-
-      if (weights.length() != 0) {
+      if (weights.size() != 0) {
         w = weights[j];
       }
 
-      d += (w * kde_element(sqrt(sum(pow(v3, 2.0))),
-                           bw,
-                           kernel,
-                           scaled,
-                           decay));
+      result += (w * kde_element(distance(fishnet_row, points_row),
+                                bw,
+                                kernel,
+                                scaled,
+                                decay));
 
+      cpp11::check_user_interrupt();
     }
 
-    out(i) = d;
-    Rcpp::checkUserInterrupt();
+    out[i] = result;
+    cpp11::check_user_interrupt();
+    pb.tick();
   }
 
   return out;
