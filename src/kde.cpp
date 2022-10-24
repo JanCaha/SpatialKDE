@@ -4,6 +4,7 @@
 #include <cpp11/R.hpp>
 #include <cpp11/doubles.hpp>
 #include <cpp11/matrix.hpp>
+#include <RProgress.h>
 #include <math.h>
 
 // uniform kernel
@@ -117,6 +118,8 @@ cpp11::writable::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishn
 
   cpp11::writable::doubles out(fishnet.nrow());
 
+  RProgress::RProgress pb("Done: [:bar] .");
+  pb.set_total(fishnet.nrow());
 
   for (int i = 0; i < fishnet.nrow(); i++) {
 
@@ -154,10 +157,13 @@ cpp11::writable::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishn
                                 kernel,
                                 scaled,
                                 decay));
+
+      cpp11::check_user_interrupt();
     }
 
     out[i] = result;
     cpp11::check_user_interrupt();
+    pb.tick();
   }
 
   return out;
