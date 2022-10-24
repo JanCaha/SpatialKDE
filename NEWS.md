@@ -1,5 +1,7 @@
 # SpatialKDE 0.8.0
 
+* add progress bar to the calculation for better overview of calculation progress
+
 * internal rewrite from using **Rcpp** package to **cpp11**, this change should be invisble to user, only relates to needed dependencies
 
 # SpatialKDE 0.7.0
