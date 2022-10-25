@@ -8,7 +8,7 @@
 #include <math.h>
 
 // uniform kernel
-double uniformKernel(double d, double bw, bool scaled){
+double uniformKernel(const double& d, const double& bw, const bool& scaled){
 
   if (scaled) {
     double k = 2./(M_PI*bw);
@@ -20,7 +20,7 @@ double uniformKernel(double d, double bw, bool scaled){
 }
 
 //quarticKernel
-double quarticKernel(double d, double bw, bool scaled){
+double quarticKernel(const double& d, const double& bw, const bool& scaled){
 
   if (scaled) {
     double k = 116./(5.*M_PI*pow(bw, 2));
@@ -32,7 +32,7 @@ double quarticKernel(double d, double bw, bool scaled){
 }
 
 //triweightKernel
-double triweightKernel(double d, double bw, bool scaled){
+double triweightKernel(const double& d, const double& bw, const bool& scaled){
 
   if (scaled) {
     double k = 128./(35.*M_PI*pow(bw, 2));
@@ -44,7 +44,7 @@ double triweightKernel(double d, double bw, bool scaled){
 }
 
 //epanechnikovKernel
-double epanechnikovKernel(double d, double bw, bool scaled){
+double epanechnikovKernel(const double& d, const double& bw, const bool& scaled){
 
   if (scaled) {
     double k = 8./(3.*M_PI*pow(bw, 2));
@@ -55,7 +55,7 @@ double epanechnikovKernel(double d, double bw, bool scaled){
   }
 }
 
-double triangularKernel(double d, double bw, bool scaled, double decay){
+double triangularKernel(const double& d, const double& bw, const bool& scaled, const double& decay){
 
   if (scaled) {
     if (decay  >= 0){
@@ -73,7 +73,7 @@ double triangularKernel(double d, double bw, bool scaled, double decay){
   }
 }
 
-double kde_element(double d, double bw, std::string kernel, bool scaled, double decay){
+double kde_element(const double& d, const double& bw, const std::string& kernel, const bool& scaled, const double& decay){
   if (d <= bw) {
     if (kernel == "uniform") {
       return uniformKernel(d, bw, scaled);
@@ -99,7 +99,7 @@ double kde_element(double d, double bw, std::string kernel, bool scaled, double 
   }
 }
 
-double distance(cpp11::doubles a, cpp11::doubles b) {
+const double distance(const cpp11::doubles& a, const cpp11::doubles& b) {
   double dist = 0;
   for (int i=0; i < a.size(); i++){
     dist += std::pow(a[i] - b[i], 2);
