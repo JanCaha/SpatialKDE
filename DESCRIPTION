@@ -19,7 +19,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
 VignetteBuilder: knitr
-LinkingTo: cpp11, progress
+LinkingTo: cpp11, progress, testthat
 SystemRequirements: C++11
 Imports: 
     sf,
@@ -36,5 +36,6 @@ Suggests:
     knitr,
     rgdal,
     rmarkdown,
-    testthat (>= 2.99.0)
+    testthat (>= 2.99.0),
+    xml2
 Config/testthat/edition: 3
