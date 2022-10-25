@@ -50,7 +50,7 @@ in both x and y dimension is equal to \code{cell_size}. The function is effectiv
 }}
 \examples{
 library(sf)
-nc <- st_read(system.file("shape/nc.shp", package="sf")) \%>\% st_transform(32031)
+nc <- st_read(system.file("shape/nc.shp", package = "sf")) \%>\% st_transform(32031)
 grid <- create_grid_hexagonal(nc, cell_size = 100000)
 grid <- create_grid_rectangular(nc, cell_size = 100000, only_inside = TRUE)
 

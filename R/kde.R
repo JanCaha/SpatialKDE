@@ -44,7 +44,7 @@
 #'
 #' @examples
 #' library(sf)
-#' nc <- st_read(system.file("shape/nc.shp", package="sf")) %>% st_transform(32031)
+#' nc <- st_read(system.file("shape/nc.shp", package = "sf")) %>% st_transform(32031)
 #' grid <- create_grid_hexagonal(nc, cell_size = 100000)
 #' points <- st_sample(nc, 500) %>% st_as_sf()
 #' kde_estimate_grid <- kde(points, band_width = 150000, grid = grid)
@@ -58,8 +58,7 @@ kde <- function(points,
                 scaled = FALSE,
                 weights = c(),
                 grid,
-                cell_size){
-
+                cell_size) {
   kernel <- match.arg(kernel)
 
   .validate_sf(points)
@@ -69,7 +68,7 @@ kde <- function(points,
   .validate_points(points)
 
   if (length(weights) == 0) {
-    weights = rep(1, nrow(points))
+    weights <- rep(1, nrow(points))
   }
 
   if (is_integer(weights, n = nrow(points))) {
@@ -77,9 +76,11 @@ kde <- function(points,
   }
 
   if (!is_double(weights, n = nrow(points), finite = TRUE)) {
-    stop(glue::glue("All values of `weights` must be numerical and finite vector (no `NA`s, `Inf` or `-Inf`).",
-                    "The length of the vector must be equal to number of rows in `points`.",
-                    "Length weights is `{length(weights)}` and number of rows in points is `{nrow(points)}`."))
+    stop(glue::glue(
+      "All values of `weights` must be numerical and finite vector (no `NA`s, `Inf` or `-Inf`).",
+      "The length of the vector must be equal to number of rows in `points`.",
+      "Length weights is `{length(weights)}` and number of rows in points is `{nrow(points)}`."
+    ))
   }
 
   if (missing(grid) & missing(cell_size)) {
@@ -91,20 +92,20 @@ kde <- function(points,
   }
 
   if (missing(grid)) {
-
     grid <- create_grid_rectangular(points, cell_size, band_width)
-
   }
 
   .validate_bandwidth(band_width)
 
-  kde_calculated <- .kde(grid = grid,
-                         points = points,
-                         band_width = band_width,
-                         decay = decay,
-                         kernel = kernel,
-                         scaled = scaled,
-                         weights = weights)
+  kde_calculated <- .kde(
+    grid = grid,
+    points = points,
+    band_width = band_width,
+    decay = decay,
+    kernel = kernel,
+    scaled = scaled,
+    weights = weights
+  )
 
   return(kde_calculated)
 }
@@ -130,7 +131,6 @@ kde <- function(points,
                     kernel,
                     scaled,
                     weights) {
-
   .validate_sf(grid)
 
   .validate_projected(grid)
@@ -142,8 +142,7 @@ kde <- function(points,
   if (all(unique(st_geometry_type(grid)) == "POINT")) {
     grid_points <- grid
   } else {
-
-    if(check_message_print()){
+    if (check_message_print()) {
       message("Using centroids instead of provided `grid` geometries to calculate KDE estimates.")
     }
 
@@ -154,20 +153,23 @@ kde <- function(points,
   }
 
   if (sf::st_crs(points) != sf::st_crs(grid_points)) {
-    message(glue::glue("`points` are transformed into `grid` CRS to make coordinates match. ",
-                       "You may want to do this manually using `st_transform()` function to ",
-                       "have better control over the process."))
+    message(glue::glue(
+      "`points` are transformed into `grid` CRS to make coordinates match. ",
+      "You may want to do this manually using `st_transform()` function to ",
+      "have better control over the process."
+    ))
     points <- points %>%
       sf::st_transform(crs = st_crs(grid_points))
   }
 
   kde_values <- kde_estimate(sf::st_coordinates(grid_points),
-                             sf::st_coordinates(points),
-                             bw = band_width,
-                             kernel = kernel,
-                             scaled = scaled,
-                             decay = decay,
-                             weights = weights)
+    sf::st_coordinates(points),
+    bw = band_width,
+    kernel = kernel,
+    scaled = scaled,
+    decay = decay,
+    weights = weights
+  )
 
   grid <- grid %>%
     dplyr::mutate(kde_value = kde_values)
@@ -178,32 +180,33 @@ kde <- function(points,
 #' @importFrom raster xyFromCell values
 #' @importFrom sf st_coordinates
 #' @importFrom methods setMethod
-setMethod(".kde",
-          "RasterLayer",
-          function(grid,
-                   points,
-                   band_width,
-                   decay,
-                   kernel,
-                   scaled,
-                   weights) {
+setMethod(
+  ".kde",
+  "RasterLayer",
+  function(grid,
+           points,
+           band_width,
+           decay,
+           kernel,
+           scaled,
+           weights) {
+    .validate_raster_projected(grid)
 
-            .validate_raster_projected(grid)
+    cells_number <- length(grid)
 
-            cells_number <- length(grid)
+    .warn_long_calculation(cells_number)
 
-            .warn_long_calculation(cells_number)
+    kde_values <- kde_estimate(raster::xyFromCell(grid, 1:cells_number),
+      sf::st_coordinates(points),
+      bw = band_width,
+      kernel = kernel,
+      scaled = scaled,
+      decay = decay,
+      weights = weights
+    )
 
-            kde_values <- kde_estimate(raster::xyFromCell(grid, 1:cells_number),
-                                       sf::st_coordinates(points),
-                                       bw = band_width,
-                                       kernel = kernel,
-                                       scaled = scaled,
-                                       decay = decay,
-                                       weights = weights)
+    raster::values(grid) <- kde_values
 
-            raster::values(grid) <- kde_values
-
-            grid
-          }
+    grid
+  }
 )
