@@ -36,6 +36,10 @@ jobs:
             any::rcmdcheck
             any::remotes
             any::devtools
+            any::styler
+
+      - name: Document package
+        run: Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
 
       - name: Check Package
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error', check_dir = 'check')"
@@ -46,3 +50,12 @@ jobs:
         with:
           name: R-CMD-check-results
           path: ./check/SpatialKDE.Rcheck/00check.log
+
+      - name: Style package
+        run: Rscript -e "styler::style_pkg()"
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: Style package + redocument
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
