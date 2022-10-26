@@ -14,12 +14,8 @@ extern "C" SEXP _SpatialKDE_kde_estimate(SEXP fishnet, SEXP points, SEXP bw, SEX
 }
 
 extern "C" {
-/* .Call calls */
-extern SEXP run_testthat_tests(SEXP);
-
 static const R_CallMethodDef CallEntries[] = {
     {"_SpatialKDE_kde_estimate", (DL_FUNC) &_SpatialKDE_kde_estimate, 7},
-    {"run_testthat_tests",       (DL_FUNC) &run_testthat_tests,       1},
     {NULL, NULL, 0}
 };
 }
