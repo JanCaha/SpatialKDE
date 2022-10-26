@@ -36,6 +36,7 @@ jobs:
             any::rcmdcheck
             any::remotes
             any::devtools
+            any::decor
             any::styler
 
       - name: Document package
