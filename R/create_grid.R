@@ -21,20 +21,18 @@
 #'
 #' @examples
 #' library(sf)
-#' nc <- st_read(system.file("shape/nc.shp", package="sf")) %>% st_transform(32031)
+#' nc <- st_read(system.file("shape/nc.shp", package = "sf")) %>% st_transform(32031)
 #' grid <- create_grid_hexagonal(nc, cell_size = 100000)
 #' grid <- create_grid_rectangular(nc, cell_size = 100000, only_inside = TRUE)
 #'
-create_grid_rectangular <- function(geometry, cell_size, side_offset = 0, only_inside = FALSE){
-
+create_grid_rectangular <- function(geometry, cell_size, side_offset = 0, only_inside = FALSE) {
   .create_grid(geometry, cell_size, side_offset, only_inside, square = TRUE)
 }
 
 #' @export
 #'
 #' @describeIn create_grid Create hexagonal grid
-create_grid_hexagonal <- function(geometry, cell_size, side_offset = 0, only_inside = FALSE){
-
+create_grid_hexagonal <- function(geometry, cell_size, side_offset = 0, only_inside = FALSE) {
   .create_grid(geometry, cell_size, side_offset, only_inside, square = FALSE)
 }
 
@@ -43,11 +41,10 @@ create_grid_hexagonal <- function(geometry, cell_size, side_offset = 0, only_ins
 #' @importFrom rlang .data
 #' @importFrom dplyr mutate filter select
 .create_grid <- function(geometry,
-                           cell_size,
-                           side_offset = 0,
-                           only_inside = FALSE,
-                           square = TRUE) {
-
+                         cell_size,
+                         side_offset = 0,
+                         only_inside = FALSE,
+                         square = TRUE) {
   .validate_sf(geometry)
 
   .validate_sideoffset(side_offset)
@@ -67,19 +64,18 @@ create_grid_hexagonal <- function(geometry, cell_size, side_offset = 0, only_ins
     sf::st_buffer(side_offset)
 
   grid <- buff_convex_hull %>%
-    sf::st_make_grid(cellsize = cell_size,
-                     what = "polygons",
-                     square = square) %>%
+    sf::st_make_grid(
+      cellsize = cell_size,
+      what = "polygons",
+      square = square
+    ) %>%
     sf::st_sf()
 
   if (only_inside) {
-
     grid <- grid %>%
       dplyr::mutate(covered = as.numeric(sf::st_covered_by(grid, buff_convex_hull))) %>%
       dplyr::filter(!is.na(.data$covered))
-
   } else {
-
     grid <- grid %>%
       dplyr::mutate(intersect = as.numeric(sf::st_intersects(grid, buff_convex_hull))) %>%
       dplyr::filter(!is.na(.data$intersect))

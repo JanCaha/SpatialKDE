@@ -35,9 +35,9 @@ Then we load the example dataset and prepare it into expected format of `sf` `da
 ```{r}
 data(meuse)
 
-meuse <- meuse %>% 
-  st_as_sf(coords = c("x", "y"), dim = "XY") %>% 
-  st_set_crs(28992) %>% 
+meuse <- meuse %>%
+  st_as_sf(coords = c("x", "y"), dim = "XY") %>%
+  st_set_crs(28992) %>%
   select()
 ```
 
@@ -53,23 +53,23 @@ band_width <- 150
 Now we can prepare grid for KDE estimation. We prepare rectangular grid (hexagonal is the second option) with given cell size which is slightly bigger than convex hull of the data.
 
 ```{r}
-grid_meuse <- meuse %>% 
+grid_meuse <- meuse %>%
   create_grid_rectangular(cell_size = cell_size, side_offset = band_width)
 ```
 
 At this moment it is possible to calculate KDE using `kde()` function with specified settings.
 
 ```{r}
-kde <- meuse %>% 
+kde <- meuse %>%
   kde(band_width = band_width, kernel = "quartic", grid = grid_meuse)
 ```
 
 The result can be visualized using `tmap` package.
 
 ```{r}
-tm_shape(kde) + 
+tm_shape(kde) +
   tm_polygons(col = "kde_value", palette = "viridis", title = "KDE Estimate") +
-tm_shape(meuse) +
+  tm_shape(meuse) +
   tm_bubbles(size = 0.1, col = "red")
 ```
 
@@ -78,23 +78,23 @@ tm_shape(meuse) +
 Now we can prepare raster for KDE estimation. We prepare raster with given cell size which is slightly bigger than convex hull of the data.
 
 ```{r}
-raster_meuse <- meuse %>% 
+raster_meuse <- meuse %>%
   create_raster(cell_size = cell_size, side_offset = band_width)
 ```
 
 At this moment it is possible to calculate KDE using `kde()` function with specified settings.
 
 ```{r}
-kde <- meuse %>% 
+kde <- meuse %>%
   kde(band_width = band_width, kernel = "triweight", grid = raster_meuse)
 ```
 
 The result can be visualized using `tmap` package.
 
 ```{r}
-tm_shape(kde) + 
+tm_shape(kde) +
   tm_raster(palette = "viridis", title = "KDE Estimate") +
-tm_shape(meuse) +
-  tm_bubbles(size = 0.1, col = "red") + 
-tm_layout(legend.outside = TRUE)
+  tm_shape(meuse) +
+  tm_bubbles(size = 0.1, col = "red") +
+  tm_layout(legend.outside = TRUE)
 ```

@@ -36,5 +36,6 @@ Suggests:
     knitr,
     rgdal,
     rmarkdown,
-    testthat (>= 2.99.0)
+    testthat (>= 2.99.0),
+    xml2
 Config/testthat/edition: 3

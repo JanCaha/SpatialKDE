@@ -17,11 +17,10 @@
 #'
 #' @examples
 #' library(sf)
-#' nc <- st_read(system.file("shape/nc.shp", package="sf")) %>% st_transform(32031)
+#' nc <- st_read(system.file("shape/nc.shp", package = "sf")) %>% st_transform(32031)
 #' raster <- create_raster(nc, cell_size = 100000)
 #'
-create_raster <- function(geometry, cell_size, side_offset = 0){
-
+create_raster <- function(geometry, cell_size, side_offset = 0) {
   .validate_sf(geometry)
 
   .validate_sideoffset(side_offset)
@@ -36,7 +35,8 @@ create_raster <- function(geometry, cell_size, side_offset = 0){
     sf::st_as_sf()
 
   raster <- raster::raster(buffered_geometry,
-                           resolution = c(cell_size, cell_size))
+    resolution = c(cell_size, cell_size)
+  )
 
   raster
 }
