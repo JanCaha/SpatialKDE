@@ -20,7 +20,7 @@ The a tutorial is provided here."><!-- mathjax --><script src="https://cdnjs.clo
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpatialKDE</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.2</span>
       </span>
     </div>
 
@@ -70,7 +70,8 @@ The a tutorial is provided <a href="https://grindgis.com/software/heat-map-using
 <span>  scaled <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">grid</span>,</span>
-<span>  <span class="va">cell_size</span></span>
+<span>  <span class="va">cell_size</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -115,6 +116,10 @@ Does not have to be specified if <code>cell_size</code> is set.</p></dd>
 <dd><p><code>numeric</code> specifying the distance for equal spaced points. Must be
 higher than 0. Can be left out if <code>grid</code> is provided as <code>grid</code> is used instead.
 The code used to generate grid is <code><a href="create_grid.html">create_grid_rectangular</a>(points, cell_size, band_width)</code>.</p></dd>
+
+
+<dt>quiet</dt>
+<dd><p>Should printing of progress bar be suppressed? Default `FALSE`.</p></dd>
 
 </dl></div>
     <div id="value">
