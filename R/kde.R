@@ -28,6 +28,7 @@
 #' @param cell_size \code{numeric} specifying the distance for equal spaced points. Must be
 #' higher than 0. Can be left out if \code{grid} is provided as \code{grid} is used instead.
 #' The code used to generate grid is \code{\link{create_grid_rectangular}(points, cell_size, band_width)}.
+#' @param quiet Should printing of progress bar be suppressed? Default `FALSE`.
 #'
 #' @return  either \code{\link[sf]{sf}} \code{data.frame} or \code{\link[raster]{Raster-class}}
 #' depending on class of \code{grid} parameter.
@@ -58,7 +59,8 @@ kde <- function(points,
                 scaled = FALSE,
                 weights = c(),
                 grid,
-                cell_size) {
+                cell_size,
+                quiet = FALSE) {
   kernel <- match.arg(kernel)
 
   .validate_sf(points)
@@ -104,7 +106,8 @@ kde <- function(points,
     decay = decay,
     kernel = kernel,
     scaled = scaled,
-    weights = weights
+    weights = weights,
+    quiet = quiet
   )
 
   return(kde_calculated)
@@ -117,7 +120,8 @@ kde <- function(points,
                  decay,
                  kernel,
                  scaled,
-                 weights) {
+                 weights,
+                 quiet = FALSE) {
   UseMethod(".kde")
 }
 
@@ -130,7 +134,8 @@ kde <- function(points,
                     decay,
                     kernel,
                     scaled,
-                    weights) {
+                    weights,
+                    quiet) {
   .validate_sf(grid)
 
   .validate_projected(grid)
@@ -168,7 +173,8 @@ kde <- function(points,
     kernel = kernel,
     scaled = scaled,
     decay = decay,
-    weights = weights
+    weights = weights,
+    showProgressBar = !quiet
   )
 
   grid <- grid %>%
@@ -189,7 +195,8 @@ setMethod(
            decay,
            kernel,
            scaled,
-           weights) {
+           weights,
+           quiet) {
     .validate_raster_projected(grid)
 
     cells_number <- length(grid)
@@ -202,7 +209,8 @@ setMethod(
       kernel = kernel,
       scaled = scaled,
       decay = decay,
-      weights = weights
+      weights = weights,
+      showProgressBar = !quiet
     )
 
     raster::values(grid) <- kde_values

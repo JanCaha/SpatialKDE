@@ -114,12 +114,18 @@ cpp11::writable::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishn
                                       std::string kernel,
                                       bool scaled,
                                       double decay,
-                                      cpp11::doubles weights) {
+                                      cpp11::doubles weights,
+                                      bool showProgressBar) {
 
   cpp11::writable::doubles out(fishnet.nrow());
 
   RProgress::RProgress pb("Done: [:bar] .");
-  pb.set_total(fishnet.nrow());
+  pb.set_show_after(2);
+
+  if (showProgressBar)
+  {
+    pb.set_total(fishnet.nrow());
+  }
 
   for (int i = 0; i < fishnet.nrow(); i++) {
 
@@ -163,7 +169,10 @@ cpp11::writable::doubles kde_estimate(cpp11::doubles_matrix<cpp11::by_row> fishn
 
     out[i] = result;
     cpp11::check_user_interrupt();
-    pb.tick();
+    if (showProgressBar)
+    {
+      pb.tick();
+    }
   }
 
   return out;
