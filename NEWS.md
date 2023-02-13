@@ -1,3 +1,7 @@
+# SpatialKDE 0.8.2
+
+* allow supression of progress bar 
+
 # SpatialKDE 0.8.0
 
 * add progress bar to the calculation for better overview of calculation progress
