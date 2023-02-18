@@ -20,7 +20,6 @@ LazyData: true
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 LinkingTo: cpp11, progress
-SystemRequirements: C++11
 Imports: 
     sf,
     dplyr,
