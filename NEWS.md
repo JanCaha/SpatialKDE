@@ -1,6 +1,6 @@
 # SpatialKDE 0.8.2
 
-* allow supression of progress bar 
+* allow supression of progress bar using the `quiet = TRUE` parameter, by default the parameter is `FALSE` so it outputs the progress bar
 
 # SpatialKDE 0.8.0
 
